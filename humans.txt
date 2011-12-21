@@ -1,0 +1,70 @@
+/* TEAM */
+
+  Sam Bisbee
+  http://www.sbisbee.com
+  Boston, MA
+
+/* THANKS */
+
+  Logo: Kurt Gannon
+  http://www.kurtgannon.com
+
+/* SITE */
+
+  Last update: 2011-11-07
+  Language: English
+  Doctype: HTML5
+  IDE: vim
+
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmmddhhyysssssssssssssyyyhhddmNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMNmdhyso+//////////////////////////////////++osyhdmNMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMNmhyo+//////////////oddoo++hddy++/////////////////////////+oyhdNMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMmo//////////////////////oshmNMMMMMMd///////////////////////////////odMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMd/////////////////////////////oymMMMMys///////////////////////////////sMMMMMMMMMMMMMMM
+MMMMMMNdhyyyhh+////////////////////////////////omMMMMm/////////////////////syysdmy///hMNNNNNMMMMMMMM
+MMMNy+///////////////////////////////////////////hMMNo////////////////////dMMMMms/////+/////+oymMMMM
+MNy///////////////////////////////////////////////yNm+//////////////////ymMMMMm/////////////////omMM
+No////+++++++++++///////////////////////////////////////////////////////hNNMMMo////++++++++///////mM
+y////++++++++++++//////////////////////////////////////////////////////////dMm////++++++++++++////oM
+s///++++++++++++++/////////////////////////////////////////////////////////NMd///+++++++++++++/////N
+y///++++++++++++++/////////////////////////////////////////////////////////+so///++++++++++++++///+N
+N+///+++++++++++++///////oso//+//oys+////////////////////////////////////////////+++++++++++++////yM
+Mm+/////++++++++++//////dMMMNNNNmMMMNo//////////////////////////////////////////+++++++++++++////yMM
+MMms//////+++++++++/////+ymMMMMMMMMMMNNd////////////////////////////////////////+++++++++/////+smMMM
+MMMMmo////+++++++++////////+shdNNMMMMNNm////////////////////////////////////////+++++++++///odNMMMMM
+MMMMMm////++++++++++////////////+osys++///////////////////////////////////////++++++++++////mMMMMMMM
+MMMMMM+///++++++++++++++/////////////////////////////////////////////////+++++++++++++++////NMMMMMMM
+MMMMMMs///++++++++++++++++++///////////////////////////////////////+++++++++++++++++++++///oMMMMMMMM
+MMMMMMh////++++++++///+++++++++++++/////////////////////////+++++++++++++++////+++++++++///hMMMMMMMM
+MMMMMMm////++++++++//////++++++++++++++++++++++++++++++++++++++++++++++////////+++++++++///mMMMMMMMM
+MMMMMMM+///++++++++///////////++++++++++++++++++++++++++++++++++++/////////////++++++++///+MMMMMMMMM
+MMMMMMMs///++++++++/////////////////+++++++++++++++++++++++/////////////oydd///++++++++///yMMMMMMMMM
+MMMMMMMh///////////////+o++////////////////////////////////////////+sydNNMMm//////////////NMMMMMMMMM
+MMMMMMMNs+/////////+oydNMNNmhyso++/////////////////////////++osyhmNNMMMMMMMMds+/////////+yMMMMMMMMMM
+MMMMMMMMMNdhyyyyhdmNMMMMMMMMMMMMNNmmdhyysssooooooosssyyhdmmNNMMMMMMMMMMMMMMMMMNmdhhhhdmmNMMMMMMMMMMM
+MMMMMMMMMNmmdddhhhdddmmNMMMMMMMMMMMMMMMMMMNNmddhhhhddmmNMMMMMMMMMMMMMMMMMMMNmmdddhhddmmNMMMMMMMMMMMM
+MMMMMmhs+/::---------:://ohmMMMMMMMMMMNdyo/::--------::/+shmMMMMMMMMMMMmhs+/::--------://oydNMMMMMMM
+MMMNs:---------------------:oNMMMMMMms/--------------------:+dMMMMMMMd+:--------------------/sNMMMMM
+MMN+----------+yyy+----------/mMMMMd/---------:/oo+/----------sMMMMNo----------/ssso:---------/mMMMM
+MMh----------sMMMMMh----------+MMMM/----------hMMMMN+----------hMMMh----------oNMMMMd----------+MMMM
+MMy----------dMMMMMM/---------:NMMN:----------NMMMMMy----------yMMMs----------sMMMMMN----------:MMMM
+MMy----------dMMMMMMo----------mMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MMy----------oMMMMMMo----------mMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MMh-----------yMMMMMo::::::::::NMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MMMo-----------omMMMNmmmmmmmmmmMMMN:----------MMMMMMy----------sMMMs----------sMMMMMN/:::::::::/MMMM
+MMMNs:----------:odNMMMMMMMMMMMMMMN:----------MMMMMMy----------sMMMs----------sMMMMMMNNNNNNNNNNNMMMM
+MMMMMdo:-----------/ymMMMMMMMMMMMMN:----------NMMMMMy----------sMMMs----------sMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMms/-----------:odNMMMMMMMMMN:----------oooooo/----------sMMMs----------sMmmmmmmmmmmmmmmmmMMMM
+MMMMMMMMMNh+:-----------/ymMMMMMMMN:---------------------------sMMMs----------sM+--------------:MMMM
+MMMMMMMMMMMMms/-----------:smMMMMMN:---------------------------sMMMs----------sM+--------------:MMMM
+MMMMMMMMMMMMMMNh+:----------:hMMMMN:----------yyyyyy+----------sMMMs----------sMs++++----------:MMMM
+MMsoooooooooodMMMd+-----------hMMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MM/----------yMMMMMy----------+MMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MM/----------yMMMMMM/---------/MMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MM/----------yMMMMMM/---------/MMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MM+----------yMMMMMM/---------/MMMN:----------MMMMMMy----------sMMMs----------sMMMMMN----------:MMMM
+MMd----------+NMMMNh----------oMMMN:----------MMMMMMy----------sMMMh----------/NMMMNh----------:MMMM
+MMMy----------:+o+/----------:mMMMN:----------MMMMMMy----------sMMMMo----------:/++/-----------:MMMM
+MMMMdo:--------------------:omMMMMN:----------MMMMMMy----------sMMMMMh/----------------:so-----:MMMM
+MMMMMMNhs+::----------:/+shNMMMMMMMsssssssssssMMMMMMdssssssssssdMMMMMMMmy+:--------:/ohNMNsoooosMMMM
+MMMMMMMMMMMNmmdddddmmNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNmddhddmNMMMMMMMMMMMMMMMM

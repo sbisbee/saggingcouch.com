@@ -1,0 +1,425 @@
+<html>
+<head>
+<title>Docs For Class SagNativeHTTPAdapter</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css">
+</head>
+<body>
+
+<table border="0" cellspacing="0" cellpadding="0" height="48" width="100%">
+  <tr>
+    <td class="header_top">HTTP</td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+  <tr>
+    <td class="header_menu">
+        
+                                                                            
+                                                  		  [ <a href="../classtrees_HTTP.html" class="menu">class tree: HTTP</a> ]
+		  [ <a href="../elementindex_HTTP.html" class="menu">index: HTTP</a> ]
+		  	    [ <a href="../elementindex.html" class="menu">all elements</a> ]
+    </td>
+  </tr>
+  <tr><td class="header_line"><img src="../media/empty.png" width="1" height="1" border="0" alt=""  /></td></tr>
+</table>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="200" class="menu">
+      <b>Packages:</b><br />
+              <a href="../li_Core.html">Core</a><br />
+              <a href="../li_Cache.html">Cache</a><br />
+              <a href="../li_HTTP.html">HTTP</a><br />
+              <a href="../li_Utils.html">Utils</a><br />
+            <br /><br />
+                        <b>Files:</b><br />
+      	  <div class="package">
+			<a href="../HTTP/_httpAdapters---SagCURLHTTPAdapter.php.html">		SagCURLHTTPAdapter.php
+		</a><br>
+			<a href="../HTTP/_httpAdapters---SagHTTPAdapter.php.html">		SagHTTPAdapter.php
+		</a><br>
+			<a href="../HTTP/_httpAdapters---SagNativeHTTPAdapter.php.html">		SagNativeHTTPAdapter.php
+		</a><br>
+	  </div><br />
+      
+      
+            <b>Classes:</b><br />
+        <div class="package">
+		    		<a href="../HTTP/SagCURLHTTPAdapter.html">SagCURLHTTPAdapter</a><br />
+	    		<a href="../HTTP/SagHTTPAdapter.html">SagHTTPAdapter</a><br />
+	    		<a href="../HTTP/SagNativeHTTPAdapter.html">SagNativeHTTPAdapter</a><br />
+	  </div>
+                </td>
+    <td>
+      <table cellpadding="10" cellspacing="0" width="100%" border="0"><tr><td valign="top">
+
+<h1>Class: SagNativeHTTPAdapter</h1>
+Source Location: /httpAdapters/SagNativeHTTPAdapter.php<br /><br />
+
+
+<table width="100%" border="0">
+<tr><td valign="top">
+
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre><a href="../HTTP/SagHTTPAdapter.html">SagHTTPAdapter</a>
+   |
+   --SagNativeHTTPAdapter</pre><br />
+<div class="description">Uses native PHP sockets to communicate with CouchDB. This means zero new  dependencies for your application.</div><br /><br />
+<h4>Author(s):</h4>
+<ul>
+        </ul>
+
+
+
+
+    
+    
+<h4>Version:</h4>
+<ul>
+  <li>0.7.0</li>
+</ul>
+
+        
+</td>
+
+
+
+<td valign="top">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../HTTP/SagNativeHTTPAdapter.html#method__destruct">__destruct</a></li>
+    <li><a href="../HTTP/SagNativeHTTPAdapter.html#methodprocPacket">procPacket</a></li>
+    <li><a href="../HTTP/SagNativeHTTPAdapter.html#methodsetSSLCert">setSSLCert</a></li>
+    <li><a href="../HTTP/SagNativeHTTPAdapter.html#methoduseSSL">useSSL</a></li>
+  </ul>
+</td>
+
+</tr></table>
+<hr />
+
+<table width="100%" border="0"><tr>
+
+
+
+
+<td valign="top">
+<h3>Inherited Variables</h3>
+<div class="tags">
+<h4>Class: <a href="../HTTP/SagHTTPAdapter.html">SagHTTPAdapter</a></h4>
+<dl>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$decodeResp">SagHTTPAdapter::$decodeResp</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$host">SagHTTPAdapter::$host</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$port">SagHTTPAdapter::$port</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$proto">SagHTTPAdapter::$proto</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$socketOpenTimeout">SagHTTPAdapter::$socketOpenTimeout</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$socketRWTimeoutMicroseconds">SagHTTPAdapter::$socketRWTimeoutMicroseconds</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$socketRWTimeoutSeconds">SagHTTPAdapter::$socketRWTimeoutSeconds</a>
+  </dt>
+<dd>
+   
+</dd>
+<dt>
+  <a href="../HTTP/SagHTTPAdapter.html#var$sslCertPath">SagHTTPAdapter::$sslCertPath</a>
+  </dt>
+<dd>
+   
+</dd>
+</dl>
+</div>
+</td>
+
+<td valign="top">
+<h3>Inherited Methods</h3>
+<div class="tags">
+<h4>Class: <a href="../HTTP/SagHTTPAdapter.html">SagHTTPAdapter</a></h4>
+<dl>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#method__construct">SagHTTPAdapter::__construct()</a>
+  </dt>
+  <dd>
+    
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodgetTimeouts">SagHTTPAdapter::getTimeouts()</a>
+  </dt>
+  <dd>
+    Returns an associative array of the currently set timeout values.
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodmakeResult">SagHTTPAdapter::makeResult()</a>
+  </dt>
+  <dd>
+    
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodparseCookieString">SagHTTPAdapter::parseCookieString()</a>
+  </dt>
+  <dd>
+    
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodprocPacket">SagHTTPAdapter::procPacket()</a>
+  </dt>
+  <dd>
+    Processes the packet, returning the server's response.
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodsetOpenTimeout">SagHTTPAdapter::setOpenTimeout()</a>
+  </dt>
+  <dd>
+    Sets how long Sag should wait to establish a connection to CouchDB.
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodsetRWTimeout">SagHTTPAdapter::setRWTimeout()</a>
+  </dt>
+  <dd>
+    Set how long we should wait for an HTTP request to be executed.
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodsetSSLCert">SagHTTPAdapter::setSSLCert()</a>
+  </dt>
+  <dd>
+    Sets the location of the CA file.
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodsetTimeoutsFromArray">SagHTTPAdapter::setTimeoutsFromArray()</a>
+  </dt>
+  <dd>
+    A utility function that sets the different timeout values based on an  associative array.
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methoduseSSL">SagHTTPAdapter::useSSL()</a>
+  </dt>
+  <dd>
+    Whether to use HTTPS or not.
+  </dd>
+    <dt>
+    <a href="../HTTP/SagHTTPAdapter.html#methodusingSSL">SagHTTPAdapter::usingSSL()</a>
+  </dt>
+  <dd>
+    Returns whether Sag is using SSL.
+  </dd>
+  </dl>
+</div>
+</td>
+
+</tr></table>
+<hr />
+
+<a name="class_details"></a>
+<h3>Class Details</h3>
+<div class="tags">
+[line 13]<br />
+Uses native PHP sockets to communicate with CouchDB. This means zero new  dependencies for your application.<br /><br /><p>This is also the original socket code that was used in Sag.</p><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>version:</b>&nbsp;&nbsp;</td><td>0.7.0</td>
+  </tr>
+</table>
+</div>
+</div><br /><br />
+<div class="top">[ <a href="#top">Top</a> ]</div><br />
+
+
+<hr />
+<a name="class_methods"></a>
+<h3>Class Methods</h3>
+<div class="tags">
+
+  <hr />
+	<a name="method__destruct"></a>
+	<h3>destructor __destruct <span class="smalllinenumber">[line 19]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void __destruct(
+)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Closes any sockets that are left open in the connection pool.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodprocPacket"></a>
+	<h3>method procPacket <span class="smalllinenumber">[line 39]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void procPacket(
+
+$method, 
+$url, [
+$data = null], [
+$headers = array()])</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		<br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../HTTP/SagHTTPAdapter.html#methodprocPacket">SagHTTPAdapter::procPacket()</a> (Processes the packet, returning the server's response.)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$method</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$url</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$data</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$headers</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodsetSSLCert"></a>
+	<h3>method setSSLCert <span class="smalllinenumber">[line 35]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void setSSLCert(
+
+$path)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Native sockets does not support SSL.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../HTTP/SagHTTPAdapter.html#methodsetSSLCert">SagHTTPAdapter::setSSLCert()</a> (Sets the location of the CA file.)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$path</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methoduseSSL"></a>
+	<h3>method useSSL <span class="smalllinenumber">[line 28]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>void useSSL(
+
+$use)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Native sockets does not support SSL.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	Overrides <a href="../HTTP/SagHTTPAdapter.html#methoduseSSL">SagHTTPAdapter::useSSL()</a> (Whether to use HTTPS or not.)<br /><br />
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$use</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+</div><br />
+
+
+        <div class="credit">
+		    <hr />
+		    Documentation generated on Wed, 09 Nov 2011 15:24:02 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.3</a>
+	      </div>
+      </td></tr></table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
