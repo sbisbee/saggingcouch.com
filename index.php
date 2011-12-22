@@ -3,29 +3,37 @@
 <h1>The Sag Project</h1>
 
 <p>
-  Sag is a PHP library for CouchDB. Its guiding principle is simplicity, creating
-  a powerful interface with little overhead that can be easily integrated with
-  any application structure. It does not force your application to use a
-  framework, special classes for documents, or ORM - but you still can if you
-  want to.
+  Sag is a suite of libraries for connecting to CouchDB. Its guiding principle
+  is simplicity, creating a powerful interface with little overhead that can be
+  easily integrated with any application structure.
 
-<p>
-  Sag accepts basic PHP data structures (objects, strings, etc.), and returns
-  either raw JSON or the response and HTTP information in an object. 
+<ul class="checkBoxList">
+  <li>
+    <span>No crazy stuff</span>
+    No special frameworks, classes for documents, or erroneous HTTP calls.
+  </li>
 
-<p>
-  <strong>All code is tested against CouchDB 1.1.x and 1.0.x, and PHP 5.3 using
-  automated tests</strong>. It's most likely still compatible with CouchDB
-  0.11.x.
+  <li>
+    <span>Gently wraps CouchDB's API</span>
+    You still use functions like get(), post(), and put().
+  </li>
 
-<div id="announcement">
-  <div id="announcementBody">
-    <p>
-      <strong>Sag-JS Coming Soon:<br/>browser + Node.JS in 1 File</strong>
-    <p>
-      <a href="https://github.com/sbisbee/sag-js">Sneak Peak @ Development <img src="./images/external.png"/></a>
-  </div>
-</div>
+  <li>
+    <span>Automated testing</span>
+    All code is tested against CouchDB 1.0.x and 1.1.x, BigCouch 0.3, and
+    Cloudant.
+  </li>
+
+  <li>
+    <span>Client side caching</span>
+    Sag takes advantage of CouchDB speaking HTTP and uses Etags for caching.
+  </li>
+
+  <li>
+    <span>The same API in PHP and JS</span>
+    Born in March 2010 as a PHP library, Sag-JS provides the same API.
+  </li>
+</ul>
 
 <h2>A Quick Example</h2>
 

@@ -41,3 +41,19 @@ ul#press { list-style: none; padding-left: 0; }
   padding: 10px;
   border: 4px solid #000;
 }
+
+.checkBoxList {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.checkBoxList li {
+  background-image: url("images/checkbox.png");
+  background-repeat: no-repeat;
+  padding: 0 0 8px 25px;
+}
+
+.checkBoxList li span {
+  display: block;
+  font-weight: bold;
+}
