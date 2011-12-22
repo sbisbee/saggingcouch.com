@@ -23,12 +23,23 @@
                 <u>Documentation</u>
                 <ul>
                   <li><a href="./phpdocs/">PHP Docs</a></li>
-                  <li><a href="https://github.com/sbisbee/sag/blob/v0.7.0/README" target="_blank">README <img src="./images/external.png"></a></li>
                   <li><a href="https://gist.github.com/1352319" target="_blank">Contributing <img src="./images/external.png"/></a></li>
                 </ul>
               </li>
-              <li><a href="http://www.github.com/sbisbee/sag">The Code <img src="./images/external.png"></a></li>
-              <li><a href="http://github.com/sbisbee/sag/issues">Issue Tracker <img src="./images/external.png"></a></li>
+              <li>
+                <u>The Code</u>
+                <ul>
+                  <li><a href="http://www.github.com/sbisbee/sag">Sag-PHP <img src="./images/external.png"></a></li>
+                  <li><a href="http://www.github.com/sbisbee/sag-js">Sag-JS <img src="./images/external.png"></a></li>
+                </ul>
+              </li>
+              <li>
+                <u>Issues</u>
+                <ul>
+                  <li><a href="http://github.com/sbisbee/sag/issues">Sag-PHP <img src="./images/external.png"></a></li>
+                  <li><a href="http://github.com/sbisbee/sag-js/issues">Sag-JS <img src="./images/external.png"></a></li>
+                </ul>
+              </li>
               <li><a href="./about.php">About</a></li>
             </ul>
           <li>
@@ -45,7 +56,7 @@
             Please support Sag's free and open source development.
 
           <li>
-            <i>Copyright 2010 - 2011 <a href="http://www.sbisbee.com">Sam Bisbee</a>.<br/>
+            <i>Copyright 2010 - 2012 <a href="http://www.sbisbee.com">Sam Bisbee</a>.<br/>
             Logo by <a href="http://www.kurtgannon.com">Kurt Gannon</a>.</i>
         </ul>
       </div>
