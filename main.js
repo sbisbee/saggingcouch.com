@@ -16,6 +16,10 @@ $(function() {
 
     $(downloadDialog).dialog('open');
 
+    $('.ui-widget-overlay').click(function() {
+      $(downloadDialog).dialog('close');
+    });
+
     return false;
   });
 
