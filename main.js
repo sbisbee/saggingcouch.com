@@ -18,4 +18,6 @@ $(function() {
 
     return false;
   });
+
+  $('#exTabs').tabs();
 });

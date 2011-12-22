@@ -37,7 +37,22 @@
 
 <h2>A Quick Example</h2>
 
-<script src="https://gist.github.com/850293.js?file=sag-examples.php"></script>
+<div id="exTabs">
+  <ul>
+    <li><a href="#exTabs-1">PHP</a></li>
+    <li><a href="#exTabs-2">JS - Node</a></li>
+    <li><a href="#exTabs-3">JS - Browser</a></li>
+  </ul>
+  <div id="exTabs-1">
+    <script src="https://gist.github.com/850293.js?file=sag-examples.php"></script>
+  </div>
+  <div id="exTabs-2">
+    <script src="https://gist.github.com/850293.js?file=sag-js-node-example.js"></script>
+  </div>
+  <div id="exTabs-3">
+    <script src="https://gist.github.com/850293.js?file=sag-js-browser-example.html"></script>
+  </div>
+</div>
 
 <h2>In the News</h2>
 
