@@ -20,8 +20,8 @@
 
   <li>
     <span>Automated testing</span>
-    All code is tested against CouchDB 1.0.x and 1.1.x, BigCouch 0.3, and
-    Cloudant.
+    Every release is automatically tested against CouchDB 1.0.x and 1.1.x,
+    BigCouch 0.3, and Cloudant.
   </li>
 
   <li>

@@ -7,7 +7,8 @@
     <meta name="keywords" content="php,couchdb,library,integration"/>
     <meta name="ttw" content="34d14zr"/>
     <title>Sag <?php echo ($title) ? "- $title" : 'PHP/CouchDB Library'; ?></title>
-    <link href="./global.css" rel="stylesheet" type="text/css">
+    <link href="./global.css" rel="stylesheet" type="text/css"/>
+    <link href="./jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <div class="wrapper">
@@ -18,7 +19,7 @@
           <li>
             <ul>
               <li><a href=".">Home</a></li>
-              <li><a href="./download.php">Download</a></li>
+              <li><a href="./download.php" id="download">Download</a></li>
               <li>
                 <u>Documentation</u>
                 <ul>
