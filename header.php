@@ -4,9 +4,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <meta name="author" content="Sam Bisbee"/>
-    <meta name="keywords" content="php,couchdb,library,integration"/>
+    <meta name="keywords" content="php,couchdb,library,integration,driver,node,node.js,javascript,js"/>
     <meta name="ttw" content="34d14zr"/>
-    <title>Sag <?php echo ($title) ? "- $title" : 'PHP/CouchDB Library'; ?></title>
+    <title>Sag <?php echo ($title) ? "- $title" : 'PHP & JS CouchDB Library'; ?></title>
     <link href="./global.css" rel="stylesheet" type="text/css"/>
     <link href="./jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css"/>
   </head>

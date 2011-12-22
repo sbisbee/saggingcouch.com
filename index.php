@@ -1,6 +1,6 @@
 <?php require_once('header.php'); ?>
 
-<h1>The Sag Project</h1>
+<h1>Sag - PHP &amp; JS for CouchDB</h1>
 
 <p>
   Sag is a suite of libraries for connecting to CouchDB. Its guiding principle
