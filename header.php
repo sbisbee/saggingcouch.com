@@ -21,24 +21,19 @@
               <li><a href=".">Home</a></li>
               <li><a href="./download.php" id="download">Download</a></li>
               <li>
-                <u>Documentation</u>
+                <u>PHP</u>
                 <ul>
-                  <li><a href="./phpdocs/">PHP Docs</a></li>
+                  <li><a href="./phpdocs/">Documentation</a></li>
+                  <li><a href="http://www.github.com/sbisbee/sag">The Code <img src="./images/external.png"></a></li>
+                  <li><a href="http://github.com/sbisbee/sag/issues">Issues <img src="./images/external.png"></a></li>
                   <li><a href="https://gist.github.com/1352319" target="_blank">Contributing <img src="./images/external.png"/></a></li>
                 </ul>
               </li>
               <li>
-                <u>The Code</u>
+                <u>JavaScript</u>
                 <ul>
-                  <li><a href="http://www.github.com/sbisbee/sag">Sag-PHP <img src="./images/external.png"></a></li>
-                  <li><a href="http://www.github.com/sbisbee/sag-js">Sag-JS <img src="./images/external.png"></a></li>
-                </ul>
-              </li>
-              <li>
-                <u>Issues</u>
-                <ul>
-                  <li><a href="http://github.com/sbisbee/sag/issues">Sag-PHP <img src="./images/external.png"></a></li>
-                  <li><a href="http://github.com/sbisbee/sag-js/issues">Sag-JS <img src="./images/external.png"></a></li>
+                  <li><a href="http://www.github.com/sbisbee/sag-js">The Code <img src="./images/external.png"></a></li>
+                  <li><a href="http://github.com/sbisbee/sag-js/issues">Issues <img src="./images/external.png"></a></li>
                 </ul>
               </li>
               <li><a href="./about.php">About</a></li>
