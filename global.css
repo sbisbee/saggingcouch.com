@@ -1,4 +1,8 @@
-body { margin-top: 15px; font-family: Verdana; }
+body {
+  margin-top: 15px;
+  font-family: Verdana;
+  line-height: 1.5em;
+}
 
 a { color: #0000FF; text-decoration: none; }
 a img { border: none; }
@@ -20,8 +24,6 @@ li.noIcon { list-style: none; }
 .wrapper { margin-left: auto; margin-right: auto; width: 1000px; background: #FFFFFF; padding: 10px; overflow: hidden; }
 
 .wrapper div { background: #FFFFFF; }
-
-pre { background: #EEEEEE; border: 1px dashed #000000; padding: 10px; font-family: Courier New; font-size: 14px; }
 
 div#vendors { width: 100%; }
 div#vendors img { padding: 10px 10px 10px; }
@@ -56,4 +58,18 @@ ul#press { list-style: none; padding-left: 0; }
 .checkBoxList li span {
   display: block;
   font-weight: bold;
+}
+
+code {
+  background: #DDD;
+  border: 1px solid #BBB;
+}
+
+pre {
+  background: #DDD;
+  border: 1px solid #BBB;
+}
+
+pre code {
+  border: none;
 }
