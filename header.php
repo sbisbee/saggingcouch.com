@@ -7,8 +7,8 @@
     <meta name="keywords" content="php,couchdb,library,integration,driver,node,node.js,javascript,js"/>
     <meta name="ttw" content="34d14zr"/>
     <title>Sag <?php echo ($title) ? "- $title" : 'PHP & JS CouchDB Library'; ?></title>
-    <link href="./global.css" rel="stylesheet" type="text/css"/>
     <link href="./jquery-ui/css/smoothness/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css"/>
+    <link href="./global.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <div class="wrapper">
@@ -32,6 +32,7 @@
               <li>
                 <u>JavaScript</u>
                 <ul>
+                  <li><a href="./jsdocs.php">Documentation</a></li>
                   <li><a href="http://www.github.com/sbisbee/sag-js">The Code <img src="./images/external.png"></a></li>
                   <li><a href="http://github.com/sbisbee/sag-js/issues">Issues <img src="./images/external.png"></a></li>
                 </ul>
