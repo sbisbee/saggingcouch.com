@@ -45,6 +45,9 @@
 <h3>setPathPrefix(prefix)</h3>
 
 <p>
+  Returns the sag object, so you can chain it.
+
+<p>
   There are instances where you will want to prefix all paths, such as when
   sending your calls through a web proxy. This is most likely going to occur
   when running your code in the browser and using a local web proxy to overcome
@@ -62,6 +65,9 @@
 <h3>decode(bool)</h3>
 
 <p>
+  Returns the sag object, so you can chain it.
+
+<p>
   By default Sag will decode JSON responses into native JS types. However, you
   can disable this behavior and just get the string back instead, which might
   be faster if you are dealing with non-JSON responses (ex., attachments or
@@ -70,6 +76,9 @@
 <script src="https://gist.github.com/1515106.js?file=decode.js"></script>
 
 <h3>setDatabase(db, [createIfNotFound], [createCallback])</h3>
+
+<p>
+  Returns the sag object, so you can chain it.
 
 <p>
   This is how you set your current database: <code>couch.setDatabase('mydb');</code>
@@ -93,9 +102,29 @@
 
 <p>
   Performs a GET request at your database's root. You can use this to access
-  documents, views, etc. The options object takes <code>url</code> and
+  documents, views, etc. The options object takes a <code>url</code> and a
   <code>callback</code> function.
 
 <script src="https://gist.github.com/1515106.js?file=get.js"></script>
+
+<h3>post(opts)</h3>
+
+<p>
+  Performs a POST request at your database's root. You can use this to write
+  documents, views, etc. The options object takes <code>data</code> to be
+  encoded as JSON, a <code>callback</code> function, and an optional
+  <code>url</code>.
+
+<script src="https://gist.github.com/1515106.js?file=post.js"></script>
+
+<h3>put(opts)</h3>
+
+<p>
+  Performs a PUT request at your database's root. You can use this to write
+  documents, views, etc. The options object takes the <code>id</code> (the
+  _id), <code>data</code> to be encoded as JSON, and a <code>callback</code>
+  function.
+
+<script src="https://gist.github.com/1515106.js?file=put.js"></script>
 
 <?php require('footer.php'); ?>
