@@ -25,6 +25,21 @@
 
 <script src="https://gist.github.com/1515106.js?file=init.html"></script>
 
+<h2>Response Callbacks</h2>
+
+<p>
+  Functions that make calls to CouchDB, such as <code>get()</code>, will always
+  accept a callback option. This is a function with two parameters:
+  <code>resp</code>, an object explained below, and <code>success</code>, a
+  boolean that is set to <code>true</code> if the HTTP response code is less
+  than 400 (<code>resp._HTTP.status < 400</code>).
+
+<p>
+  The response object has three properties: <code>_HTTP</code>, which has the
+  HTTP status line information, <code>headers</code>, which has all of the
+  headers (keys are all set to lower case), and <code>body</code>, which has
+  the response's body.
+
 <h2>The API</h2>
 
 <h3>setPathPrefix(prefix)</h3>
@@ -70,5 +85,10 @@
 <h3>get(opts)</h3>
 
 <p>
+  Performs a GET request at your database's root. You can use this to access
+  documents, views, etc. The options object takes <code>url</code> and
+  <code>callback</code> function.
+
+<script src="https://gist.github.com/1515106.js?file=get.js"></script>
 
 <?php require('footer.php'); ?>
