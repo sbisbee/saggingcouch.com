@@ -24,7 +24,7 @@
 <h2>Initiating</h2>
 
 <p>
-  You initiate the object by calling its <code>server()</code> function.
+  You initiate the Sag object by calling its <code>server()</code> function.
 
 <script src="https://gist.github.com/1515106.js?file=init.html"></script>
 
@@ -43,7 +43,24 @@
   headers (keys are all set to lower case), and <code>body</code>, which has
   the response's body.
 
-<h2>The API</h2>
+<h2>Constants</h2>
+
+<h3>AUTH_BASIC</h3>
+
+<p>
+  Used to tell the <code>login()</code> function you want to use HTTP Basic
+  authentication.
+
+<h3>AUTH_COOKIE</h3>
+
+<p>
+  Used to tell the <code>login()</code> function you want to use cookie/session
+  based authentication.
+
+<h2>Functions</h2>
+
+You must initialize the Sag object before calling any of these objects. See <a
+href="#initiating">Initiating</a>.
 
 <h3>setPathPrefix(prefix)</h3>
 
@@ -228,5 +245,31 @@
   <code>filterQueryParams</code> parameter.
 
 <script src="https://gist.github.com/1515442.js?file=replicate.js"></script>
+
+<h3>getAllDocs(opts)</h3>
+
+<p>
+  Performs a request to /_all_docs. You pass the query parameters in the
+  options object: <code>includeDocs</code> (bool), <code>limit</code> (int),
+  <code>startKey</code> (string), <code>endKey</code> (string),
+  <code>descending</code> (bool), <code>keys</code> (array).
+
+<script src="https://gist.github.com/1515442.js?file=getAllDocs.js"></script>
+
+<h3>login(opts)</h3>
+
+<p>
+  By default Sag uses HTTP Basic authentication (<code>sag.AUTH_BASIC</code>).
+  This is the easiest method, as it does not require any additional HTTP calls:
+  you just set the user name and password, and Sag will send it on every
+  request.
+
+<p>
+  You can elect to use cookie based authentication
+  (<code>sag.AUTH_COOKIE</code>). This requires an HTTP POST to /_session at
+  the time of invocation to get the AuthSession key. As such you also have to
+  provide a callback.
+
+<script src="https://gist.github.com/1515442.js?file=login.js"></script>
 
 <?php require('footer.php'); ?>

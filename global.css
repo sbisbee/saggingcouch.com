@@ -9,6 +9,7 @@ a img { border: none; }
 
 h1 { font-size: 25px; }
 h2 { font-size: 20px; }
+h3 { font-size: 15px; }
 
 .nav { float: left; width: 200px; }
 .nav > ul.navBlocks { list-style-type: none; padding-left: 0px; }
