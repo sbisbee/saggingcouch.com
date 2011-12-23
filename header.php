@@ -53,6 +53,9 @@
             Please support Sag's free and open source development.
 
           <li>
+            <a href="https://github.com/sbisbee/saggingcouch.com">This site on GitHub <img src="./images/external.png"/></a>
+
+          <li>
             <i>Copyright 2010 - 2012 <a href="http://www.sbisbee.com">Sam Bisbee</a>.<br/>
             Logo by <a href="http://www.kurtgannon.com">Kurt Gannon</a>.</i>
         </ul>

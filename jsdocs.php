@@ -3,7 +3,7 @@
 <h1>JavaScript Documentation</h1>
 
 <p><i>
-  All of the code samples are available on GitHub at
+  All of the code samples are available on GitHub
   <a href="https://gist.github.com/1515106">in a gist</a>.
 </i></p>
 
