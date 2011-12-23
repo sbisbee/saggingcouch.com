@@ -272,4 +272,32 @@ href="#initiating">Initiating</a>.
 
 <script src="https://gist.github.com/1515442.js?file=login.js"></script>
 
+<h3>getAllDatabases(callback)</h3>
+
+<p>
+  Retrieves all of the databases by making a GET call to /_all_dbs. The
+  callback function acts just like <code>get()</code>'s.
+
+<h3>getStats(callback)</h3>
+
+<p>
+  Retrieves the server's statistics by making a GET call to /_stats. The
+  callback function acts just like <code>get()</code>'s.
+
+<h3>generateIDs(opts)</h3>
+
+<p>
+  Uses CouchDB's /_uuids endpoint to generate IDs. You can specific how many
+  you want with the <code>count</code> (int) parameter.
+
+<script src="https://gist.github.com/1515442.js?file=generateIDs.js"></script>
+
+<h3>compact(opts)</h3>
+
+<p>
+  Initiates a compaction job, optionally allowing you to specify a
+  <code>viewName</code>.
+
+<script src="https://gist.github.com/1515442.js?file=compact.js"></script>
+
 <?php require('footer.php'); ?>
