@@ -181,4 +181,52 @@
 
 <script src="https://gist.github.com/1515106.js?file=bulk.js"></script>
 
+<h3>createDatabase(name, callback)</h3>
+
+<p>
+  Create the named database.
+
+<h3>deleteDatabase(name, callback)</h3>
+
+<p>
+  Deletes the named database.
+
+<h3>setAttachment(opts)</h3>
+
+<p>
+  Allows you to set an attachment on a document. You must provide the parent
+  document's <code>docID</code> and <code>docRev</code>, and the attachment's
+  <code>data</code>, <code>contentType</code> (for the Content-Type header),
+  and <code>name</code>.
+
+<script src="https://gist.github.com/1515442.js?file=setAttachment.js"></script>
+
+<h3>setCookie(key, value)</h3>
+
+<p>
+  You can provide a cookie that will be sent on all subsequent requests to the
+  server. Both the <code>key</code> and <code>value</code> must be strings.
+
+<h3>getCookie(key)</h3>
+
+<p>
+  Returns the cookie value, if any, that you set with <code>setCookie()</code>. You will also have access to cookies sent from CouchDB in Node.JS - <strong>you will not have access to cookies from CouchDB in browsers due to browser security.</strong>
+
+<h3>replicate(opts)</h3>
+
+<p>
+  Performs a replication job using the /_replicate endpoint (<u>not</u> the
+  /_replicator database).
+
+<p>
+  You can do continuous replication by setting the <code>continuous</code>
+  parameter to <code>true</code>.
+
+<p>
+  You can do filtered replication by providing the <code>filter</code>
+  parameter (string). You pass filer parameters as an object to the
+  <code>filterQueryParams</code> parameter.
+
+<script src="https://gist.github.com/1515442.js?file=replicate.js"></script>
+
 <?php require('footer.php'); ?>
