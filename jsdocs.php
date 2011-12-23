@@ -82,6 +82,13 @@
 
 <script src="https://gist.github.com/1515106.js?file=setDatabase.js"></script>
 
+<h3>currentDatabase()</h3>
+
+<p>
+  Returns what the current database is set to (what you passed to
+  <code>setDatabase()</code>. Returns <code>undefined</code> if no database has
+  been set yet.
+
 <h3>get(opts)</h3>
 
 <p>
