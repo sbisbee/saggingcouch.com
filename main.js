@@ -16,6 +16,8 @@ $(function() {
         tocBuffer += '<ul>';
       }
       else if(this.nodeName.toLowerCase() === 'h2' && inner) {
+        inner = false;
+
         tocBuffer += '</ul>';
       }
 
