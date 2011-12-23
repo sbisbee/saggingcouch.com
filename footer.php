@@ -1,14 +1,5 @@
       </div>
     </div>
-    <div id="downloadDialog" title="Download Sag">
-      <p>
-        <ul>
-          <li><a href="download.php">All Downloads</a>
-          <li><a href="distrib/sag-0.7.1.tar.gz">Sag-PHP v0.7.1</a>
-          <li><a href="distrib/sag-js-0.1.0.tar.gz">Sag-JS v0.1.0</a>
-        </ul>
-      </p>
-    </div>
 
     <script src="jquery-ui/js/jquery-1.6.2.min.js"></script>
     <script src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
