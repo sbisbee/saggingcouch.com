@@ -33,9 +33,9 @@ href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, version
     href="http://github.com/sbisbee/sag">Github <img src="./images/external.png"></a>, 
     or by cloning the git repository directly:
 
-    <pre>
+    <code>
     git clone git://github.com/sbisbee/sag.git sag
-    </pre>
+    </code>
 
     <hr/>
 
@@ -459,7 +459,33 @@ href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, version
     </ul>
   </div>
   <div id="downloadTabs-js">
-    vbwah
+    <p>
+      You can always get the latest code under development at <a href="http://github.com/sbisbee/sag-js">Github <img src="./images/external.png"></a>, 
+      or by cloning the git repository directly: <br/><code>
+      git clone git://github.com/sbisbee/sag-js.git sag-js</code>
+
+    <hr/>
+
+    <a name="v0.1.0"></a>
+    <h2>0.1.0</h2>
+    <p>Released December 24th, 2011</p>
+
+    <p>
+      <strong>Files</strong>
+      <ul>
+        <li>
+          Release: <a href="./distrib/sag-js-0.1.0.tar.gz">sag-js-0.1.0.tar.gz</a> [<a href="./distrib/sag-js-0.1.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-js-0.1.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-js-0.1.0.tar.gz.md5">MD5 Checksum</a>]
+        </li>
+        <li>
+          Git Tag: <a href="http://github.com/sbisbee/sag-js/tree/v0.1.0">Github <img src="./images/external.png"></a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      This is the first release of Sag-JS. It is API compatible with Sag
+      v0.7.1.
+
   </div>
 </div>
 
