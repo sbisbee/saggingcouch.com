@@ -13,4 +13,4 @@ REMOTE_ROOT='public_html/saggingcouch.com'
 rsync -ave ssh $REMOTE_HOST:$REMOTE_ROOT/distrib/ distrib/
 
 # Push
-rsync -ave ssh --exclude buildTOC.js --exclude sync.sh --exclude .git --delete . $REMOTE_HOST:$REMOTE_ROOT
+rsync -ave ssh --exclude buildTOC.js --exclude sync.sh --exclude .git --exclude *.tpl.php --delete . $REMOTE_HOST:$REMOTE_ROOT
