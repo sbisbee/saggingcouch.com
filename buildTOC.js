@@ -92,9 +92,20 @@ function makeNode(html, pos, openTag, closeTag) {
     )
   };
 
+  //the <h2> or <h3> tag's id
+  node.targetID = node.text;
+
+  //the <li><a>'s href attr that targets node.targetID
   node.href = '#' + encodeURIComponent(node.text);
 
   return node;
+}
+
+function setTagAttr(html, tag, key, val) {
+  var pos = html.indexOf(tag) + tag.length - 1;
+  var attr = ' ' + key + '="' + val + '"';
+
+  return html.substr(0, pos) + attr + html.substr(pos);
 }
 
 //required arg(s)
@@ -127,6 +138,8 @@ for(i in html) {
       nodes.push(makeNode(html[i], currPos, h2OpenTag, h2CloseTag));
 
       prevNode = nodes.length - 1;
+
+      html[i] = setTagAttr(html[i], h2OpenTag, 'id', nodes[nodes.length - 1].targetID);
     }
     else {
       //parse and store <h3>
@@ -138,6 +151,13 @@ for(i in html) {
         }
 
         nodes[prevNode].children.push(makeNode(html[i], currPos, h3OpenTag, h3CloseTag));
+
+        html[i] = setTagAttr(
+          html[i],
+          h3OpenTag,
+          'id',
+          nodes[prevNode].children[nodes[prevNode].children.length - 1].targetID
+        );
       }
     }
   }
