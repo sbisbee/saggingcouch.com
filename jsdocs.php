@@ -10,7 +10,9 @@
 <p>
   For Sag-JS v0.1 (last updated Dec 23, 2011)
 
-<div id="toc"></div>
+<div id="toc">
+
+</div>
 
 <p>
   The same sag.js file is used in both Node.JS and browser code. It
