@@ -6,7 +6,11 @@
  * Released into the public domain without any warranties.
  *
  * Used on www.saggingcouch.com to build table of contents for pages from <h2>
- * and <h3> tags.
+ * and <h3> tags. Outputs the new HTML on stdout, following the Unix
+ * Philosophy. Plus, it greatly decreases the chances you'll overwrite the
+ * original file.
+ *
+ * Usage: node ./buildTOC.js fileToParse > outputFile
  */
 var fs = require('fs');
 var util = require('util');
@@ -41,7 +45,7 @@ var prevNode;
  */
 var tocPos;
 
-// returns the HTML for an <li>, including the link and optional closing tag
+//returns the HTML for an <li>, including the link and optional closing tag
 function makeListItemHTML(text, href, omitCloseTag) {
   return '<li><a href="' + href + '">' + text + '</a>' + ((omitCloseTag) ? '' : '</li>\n');
 }
@@ -53,7 +57,7 @@ function nodesToHTML(nodes) {
   return '\n<ul>' + nodes.reduce(reduceNodesToHTML) + '</ul>\n';
 }
 
-// Do not call this directly - use nodesToHTML() instead!
+//Do not call this directly - use nodesToHTML() instead!
 function reduceNodesToHTML(prevVal, currVal) {
   var buff = makeListItemHTML(currVal.text, currVal.href, true);
 
@@ -79,7 +83,7 @@ function reduceNodesToHTML(prevVal, currVal) {
   return prevVal + buff + '</li>\n';
 }
 
-// creates the node object, breaking the text out of the provided HTML
+//creates the node object, breaking the text out of the provided HTML
 function makeNode(html, pos, openTag, closeTag) {
   var node = {
     text: html.substr(
@@ -93,15 +97,15 @@ function makeNode(html, pos, openTag, closeTag) {
   return node;
 }
 
-// required arg(s)
+//required arg(s)
 if(!process.argv[2]) {
   throw 'No file name provided';
 }
 
-// read in the file to process
+//read in the file to process
 html = fs.readFileSync(process.argv[2], 'utf-8').split('\n');
 
-// parse and store all of our tags/data
+//parse and store all of our tags/data
 for(i in html) {
   if(!tocPos) {
     //we're still looking for the TOC <div>
