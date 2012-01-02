@@ -49,4 +49,16 @@ $(function() {
     }
   })
   .css('border', 'none');
+
+  $(window).hashchange(function(e) {
+    if(location.hash) {
+      trackEvent([
+        'JS Docs',
+        'Hash Change',
+        decodeURIComponent(location.hash.substr(1))
+      ]);
+    }
+  });
+
+  $(window).hashchange();
 });
