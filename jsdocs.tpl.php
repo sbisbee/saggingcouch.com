@@ -8,7 +8,7 @@
 </i></p>
 
 <p>
-  For Sag-JS v0.1 (last updated Dec 23, 2011)
+  For Sag-JS v0.3.0 (last updated March 24th, 2012)
 
 <div id="toc">
 
