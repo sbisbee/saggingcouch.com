@@ -466,6 +466,71 @@ href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, version
 
     <hr/>
 
+    <a name="v0.3.0"></a>
+    <h2>0.3.0</h2>
+    <p>Released March 24th, 2012</p>
+
+    <p>
+      <strong>Files</strong>
+      <ul>
+        <li>
+          Release: <a href="./distrib/sag-js-0.3.0.tar.gz">sag-js-0.3.0.tar.gz</a> [<a href="./distrib/sag-js-0.3.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-js-0.3.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-js-0.3.0.tar.gz.md5">MD5 Checksum</a>]
+        </li>
+        <li>
+          Git Tag: <a href="http://github.com/sbisbee/sag-js/tree/v0.3.0">Github <img src="./images/external.png"></a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <strong>Changelog</strong>
+
+    <p>
+      <u>New Features</u>
+      <ul>
+        <li>You can now initialize your server connection with a URL by using
+    sag.serverFromURL(). For example,
+    sag.serverFromURL('http://user:pass@user.cloudant.com/db') would be the
+    same as using the server() constructor, then login(), and then
+    setDatabase().</li>
+
+        <li>Implemented the toString() function on the server() API to return a full
+    URL. For example, it might return 'http://user:pass@user.cloudant.com/db'.</li>
+      </ul>
+    </p>
+
+    <a name="v0.2.0"></a>
+    <h2>0.2.0</h2>
+    <p>Released March 14th, 2012</p>
+
+    <p>
+      <strong>Files</strong>
+      <ul>
+        <li>
+          Release: <a href="./distrib/sag-js-0.2.0.tar.gz">sag-js-0.2.0.tar.gz</a> [<a href="./distrib/sag-js-0.2.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-js-0.2.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-js-0.2.0.tar.gz.md5">MD5 Checksum</a>]
+        </li>
+        <li>
+          Git Tag: <a href="http://github.com/sbisbee/sag-js/tree/v0.2.0">Github <img src="./images/external.png"></a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <strong>Changelog</strong>
+
+    <p>
+      <u>New Features</u>
+      <ul>
+        <li>All of the thrown exceptions are now Error's instead of strings. Closes #1.</li>
+
+        <li>Introduction of `on('event', callback)` which allows you to create global
+    event handlers. Currently the only event supported is 'error' whose
+    callback gets the response object as its parameter. For example, you can
+    make a global error handler by specifying
+    `sag.on('error', function(resp) { ... });`. Closes #5.</li>
+      </ul>
+    </p>
+
     <a name="v0.1.0"></a>
     <h2>0.1.0</h2>
     <p>Released December 24th, 2011</p>
