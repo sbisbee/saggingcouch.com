@@ -1,0 +1,2198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="Sag Documentation">
+  <file path="httpAdapters/SagNativeHTTPAdapter.php" hash="4567f16c4c2f96b469d1bd502b13953b" package="HTTP">
+    <docblock line="2">
+      <description>Uses native PHP sockets to communicate with CouchDB.</description>
+      <long-description>&lt;p&gt;This means zero new
+dependencies for your application.&lt;/p&gt;
+
+&lt;p&gt;This is also the original socket code that was used in Sag.&lt;/p&gt;</long-description>
+      <tag line="2" name="version" description="0.8.0"/>
+      <tag line="2" name="package" description="HTTP"/>
+    </docblock>
+    <include line="11" type="Require Once" package="Core">
+      <name>SagHTTPAdapter.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="13" package="Core">
+      <extends>\SagHTTPAdapter</extends>
+      <name>SagNativeHTTPAdapter</name>
+      <full_name>\SagNativeHTTPAdapter</full_name>
+      <property final="false" static="false" visibility="private" line="14" namespace="global" package="Core">
+        <name>$connPool</name>
+        <default>array()</default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="19" package="Core">
+        <name>__destruct</name>
+        <full_name>__destruct</full_name>
+        <docblock line="16">
+          <description>Closes any sockets that are left open in the connection pool.</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="28" package="Core">
+        <name>useSSL</name>
+        <full_name>useSSL</full_name>
+        <docblock line="25">
+          <description>Native sockets does not support SSL.</description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="28">
+          <name>$use</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="35" package="Core">
+        <name>setSSLCert</name>
+        <full_name>setSSLCert</full_name>
+        <docblock line="32">
+          <description>Native sockets does not support SSL.</description>
+          <long-description></long-description>
+        </docblock>
+        <argument line="35">
+          <name>$path</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="39" package="Core">
+        <name>procPacket</name>
+        <full_name>procPacket</full_name>
+        <argument line="39">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$data</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$headers</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$specialHost</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="39">
+          <name>$specialPort</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="13" code="50000">No DocBlock was found for \SagNativeHTTPAdapter</error>
+      <error line="14" code="50018">No DocBlock was found for property $connPool</error>
+      <error line="25" code="50015">Argument $use is missing from the Docblock of useSSL()</error>
+      <error line="32" code="50015">Argument $path is missing from the Docblock of setSSLCert()</error>
+      <error line="39" code="50010">No DocBlock was found for method procPacket()</error>
+    </parse_markers>
+  </file>
+  <file path="httpAdapters/SagHTTPAdapter.php" hash="54c2864a5605d0f71fd4a8cb5a299609" package="Core">
+    <class final="false" abstract="true" namespace="global" line="10" package="HTTP">
+      <extends/>
+      <name>SagHTTPAdapter</name>
+      <full_name>\SagHTTPAdapter</full_name>
+      <docblock line="2">
+        <description>Provides a common interface for Sag to connect to CouchDB over HTTP,
+allowing for different drivers to be used thereby controling your project's
+dependencies.</description>
+        <long-description></long-description>
+        <tag line="2" name="version" description="0.8.0"/>
+        <tag line="2" name="package" description="HTTP"/>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="11" namespace="global" package="Core">
+        <name>$decodeResp</name>
+        <default>true</default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="13" namespace="global" package="Core">
+        <name>$host</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="14" namespace="global" package="Core">
+        <name>$port</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="16" namespace="global" package="Core">
+        <name>$proto</name>
+        <default>'http'</default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="17" namespace="global" package="Core">
+        <name>$sslCertPath</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="19" namespace="global" package="Core">
+        <name>$socketOpenTimeout</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="20" namespace="global" package="Core">
+        <name>$socketRWTimeoutSeconds</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="21" namespace="global" package="Core">
+        <name>$socketRWTimeoutMicroseconds</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="23" package="HTTP">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="23">
+          <name>$host</name>
+          <default>"127.0.0.1"</default>
+          <type/>
+        </argument>
+        <argument line="23">
+          <name>$port</name>
+          <default>"5984"</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="36" package="HTTP">
+        <name>makeResult</name>
+        <full_name>makeResult</full_name>
+        <docblock line="28">
+          <description>Used by the concrete HTTP adapters, this abstracts out the generic task of
+turning strings from the net into response objects.</description>
+          <long-description></long-description>
+          <tag line="28" name="param" description="The body of the HTTP packet." type="string" variable="$response">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="28" name="param" description="The request's HTTP method (&quot;HEAD&quot;, etc.)." type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="28" name="returns" description="stdClass The response object."/>
+        </docblock>
+        <argument line="36">
+          <name>$response</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="96" package="HTTP">
+        <name>parseCookieString</name>
+        <full_name>parseCookieString</full_name>
+        <docblock line="88">
+          <description>A utility function for the concrete adapters to turn the HTTP Cookie
+header's value into an object (map).</description>
+          <long-description></long-description>
+          <tag line="88" name="param" description="The HTTP Cookie header value (not including the&#10;&quot;Cookie: &quot; key." type="string" variable="$cookieStr">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="88" name="returns" description="stdClass An object mapping cookie name to cookie value."/>
+        </docblock>
+        <argument line="96">
+          <name>$cookieStr</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="124" package="HTTP">
+        <name>procPacket</name>
+        <full_name>procPacket</full_name>
+        <docblock line="107">
+          <description>Processes the packet, returning the server's response.</description>
+          <long-description></long-description>
+          <tag line="107" name="param" description="The HTTP method for the request (ex., &quot;HEAD&quot;)." type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="107" name="param" description="The URL to hit, not including the host info (ex.,&#10;&quot;/_all_docs&quot;)." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="107" name="param" description="A serialized version of any data that needs to be sent&#10;in the packet's body." type="string" variable="$data">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="107" name="param" description="An associative array of headers where the keys are&#10;the header names." type="array" variable="$headers">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="107" name="param" description="Uses the provided host for this packet only -&#10;does not change the adapter's global host setting." type="mixed" variable="$specialHost">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="107" name="param" description="Uses the provided port for this packet only -&#10;does not change the adapter's global port setting." type="mixed" variable="$specialPort">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="107" name="returns" description="stdClass The response object created by makeResponse()."/>
+          <tag line="107" name="see" description="\makeResponse()" refers="\makeResponse()"/>
+        </docblock>
+        <argument line="124">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$data</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$headers</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$specialHost</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="124">
+          <name>$specialPort</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="131" package="HTTP">
+        <name>useSSL</name>
+        <full_name>useSSL</full_name>
+        <docblock line="126">
+          <description>Whether to use HTTPS or not.</description>
+          <long-description></long-description>
+          <tag line="126" name="param" description="Whether to use HTTPS or not." type="bool" variable="$use">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="131">
+          <name>$use</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="140" package="HTTP">
+        <name>setSSLCert</name>
+        <full_name>setSSLCert</full_name>
+        <docblock line="135">
+          <description>Sets the location of the CA file.</description>
+          <long-description></long-description>
+          <tag line="135" name="param" description="The absolute path to the CA file, or null to unset." type="mixed" variable="$path">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="140">
+          <name>$path</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="149" package="HTTP">
+        <name>usingSSL</name>
+        <full_name>usingSSL</full_name>
+        <docblock line="144">
+          <description>Returns whether Sag is using SSL.</description>
+          <long-description></long-description>
+          <tag line="144" name="returns" description="bool Returns true if the adapter is using SSL, else false."/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="158" package="HTTP">
+        <name>setOpenTimeout</name>
+        <full_name>setOpenTimeout</full_name>
+        <docblock line="153">
+          <description>Sets how long Sag should wait to establish a connection to CouchDB.</description>
+          <long-description></long-description>
+          <tag line="153" name="param" description="The number of seconds." type="int" variable="$seconds">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="158">
+          <name>$seconds</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="172" package="HTTP">
+        <name>setRWTimeout</name>
+        <full_name>setRWTimeout</full_name>
+        <docblock line="166">
+          <description>Set how long we should wait for an HTTP request to be executed.</description>
+          <long-description></long-description>
+          <tag line="166" name="param" description="The number of seconds." type="int" variable="$seconds">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="166" name="param" description="The number of microseconds." type="int" variable="$microseconds">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="172">
+          <name>$seconds</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="172">
+          <name>$microseconds</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="201" package="HTTP">
+        <name>getTimeouts</name>
+        <full_name>getTimeouts</full_name>
+        <docblock line="193">
+          <description>Returns an associative array of the currently set timeout values.</description>
+          <long-description></long-description>
+          <tag line="193" name="return" description="An associative array with the keys 'open', 'rwSeconds', and&#10;'rwMicroseconds'." type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="193" name="see" description="\setTimeoutsFromArray()" refers="\setTimeoutsFromArray()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="218" package="HTTP">
+        <name>setTimeoutsFromArray</name>
+        <full_name>setTimeoutsFromArray</full_name>
+        <docblock line="209">
+          <description>A utility function that sets the different timeout values based on an
+associative array.</description>
+          <long-description></long-description>
+          <tag line="209" name="param" description="An associative array with the keys 'open', 'rwSeconds',&#10;and 'rwMicroseconds'." type="array" variable="$arr">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="209" name="see" description="\getTimeouts()" refers="\getTimeouts()"/>
+        </docblock>
+        <argument line="218">
+          <name>$arr</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="177">make this better, including checking $microseconds</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file httpAdapters/SagHTTPAdapter.php</error>
+      <error line="11" code="50018">No DocBlock was found for property $decodeResp</error>
+      <error line="13" code="50018">No DocBlock was found for property $host</error>
+      <error line="14" code="50018">No DocBlock was found for property $port</error>
+      <error line="16" code="50018">No DocBlock was found for property $proto</error>
+      <error line="17" code="50018">No DocBlock was found for property $sslCertPath</error>
+      <error line="19" code="50018">No DocBlock was found for property $socketOpenTimeout</error>
+      <error line="20" code="50018">No DocBlock was found for property $socketRWTimeoutSeconds</error>
+      <error line="21" code="50018">No DocBlock was found for property $socketRWTimeoutMicroseconds</error>
+      <error line="23" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="httpAdapters/SagCURLHTTPAdapter.php" hash="2ebc066f5821ce3d635e4561848cca02" package="HTTP">
+    <docblock line="2">
+      <description>Uses the PHP cURL bindings for HTTP communication with CouchDB.</description>
+      <long-description>&lt;p&gt;This gives
+you more advanced features, like SSL supports, with the cost of an
+additional dependency that your shared hosting environment might now have.&lt;/p&gt;</long-description>
+      <tag line="2" name="version" description="0.8.0"/>
+      <tag line="2" name="package" description="HTTP"/>
+    </docblock>
+    <include line="10" type="Require Once" package="Core">
+      <name>SagHTTPAdapter.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="12" package="Core">
+      <extends>\SagHTTPAdapter</extends>
+      <name>SagCURLHTTPAdapter</name>
+      <full_name>\SagCURLHTTPAdapter</full_name>
+      <property final="false" static="false" visibility="private" line="13" namespace="global" package="Core">
+        <name>$ch</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="15" package="Core">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="15">
+          <name>$host</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="15">
+          <name>$port</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="25" package="Core">
+        <name>procPacket</name>
+        <full_name>procPacket</full_name>
+        <argument line="25">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="25">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="25">
+          <name>$data</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="25">
+          <name>$headers</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+        <argument line="25">
+          <name>$specialHost</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="25">
+          <name>$specialPort</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="12" code="50000">No DocBlock was found for \SagCURLHTTPAdapter</error>
+      <error line="13" code="50018">No DocBlock was found for property $ch</error>
+      <error line="15" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="25" code="50010">No DocBlock was found for method procPacket()</error>
+    </parse_markers>
+  </file>
+  <file path="SagCouchException.php" hash="a62e47d952c05e38fea8558b86d79887" package="Core">
+    <class final="false" abstract="false" namespace="global" line="27" package="Core">
+      <extends>\Exception</extends>
+      <name>SagCouchException</name>
+      <full_name>\SagCouchException</full_name>
+      <docblock line="16">
+        <description>This exception is thrown when CouchDB reports an error, such as sending
+malformed JSON, and not Sag.</description>
+        <long-description>&lt;p&gt;The exception's code ($e-&gt;getCode()) is the HTTP status code. For example,
+if the requested document isn't found, then the code would be set to "404"
+(string).&lt;/p&gt;</long-description>
+        <tag line="16" name="version" description="0.8.0"/>
+        <tag line="16" name="package" description="Core"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="28" package="Core">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="28">
+          <name>$msg</name>
+          <default>""</default>
+          <type/>
+        </argument>
+        <argument line="28">
+          <name>$code</name>
+          <default>0</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SagCouchException.php</error>
+      <error line="28" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="SagFileCache.php" hash="c627975183bed11c227e5b26c6699a6d" package="Core">
+    <include line="16" type="Require Once" package="Core">
+      <name>SagCache.php</name>
+    </include>
+    <include line="17" type="Require Once" package="Core">
+      <name>SagException.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="32" package="Cache">
+      <extends>\SagCache</extends>
+      <name>SagFileCache</name>
+      <full_name>\SagFileCache</full_name>
+      <docblock line="19">
+        <description>Cache to the local hard disk.</description>
+        <long-description>&lt;p&gt;Uses /tmp by default, but you can specify
+another location.&lt;/p&gt;
+
+&lt;p&gt;Cache keys are used for file names and the contents are JSON. System file
+sizes are used to calculate the cache's current size.&lt;/p&gt;
+
+&lt;p&gt;Every operation goes to the disk, so this cache will not be ideal for high
+I/O operations.&lt;/p&gt;</long-description>
+        <tag line="19" name="package" description="Cache"/>
+        <tag line="19" name="version" description="0.8.0"/>
+      </docblock>
+      <property final="false" static="true" visibility="private" line="33" namespace="global" package="Core">
+        <name>$fileExt</name>
+        <default>".sag"</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="35" namespace="global" package="Core">
+        <name>$fsLocation</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="43" package="Cache">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="37">
+          <description></description>
+          <long-description></long-description>
+          <tag line="37" name="param" description="The file system path to the directory that should&#10;be used to store the cache files. The local system's temp directory is&#10;used by default." type="string" variable="$location">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="37" name="return" description="" type="\SagFileCache">
+            <type by_reference="false">\SagFileCache</type>
+          </tag>
+        </docblock>
+        <argument line="43">
+          <name>$location</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="74" package="Cache">
+        <name>makeFilename</name>
+        <full_name>makeFilename</full_name>
+        <docblock line="67">
+          <description>Generates the full filename/path that would be used for a given URL's
+cache object.</description>
+          <long-description></long-description>
+          <tag line="67" name="param" description="The URL for the cached item." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="67" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="74">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="78" package="Cache">
+        <name>set</name>
+        <full_name>set</full_name>
+        <argument line="78">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="78">
+          <name>$item</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="107" package="Cache">
+        <name>get</name>
+        <full_name>get</full_name>
+        <argument line="107">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="121" package="Cache">
+        <name>remove</name>
+        <full_name>remove</full_name>
+        <argument line="121">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="143" package="Cache">
+        <name>clear</name>
+        <full_name>clear</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SagFileCache.php</error>
+      <error line="33" code="50018">No DocBlock was found for property $fileExt</error>
+      <error line="35" code="50018">No DocBlock was found for property $fsLocation</error>
+      <error line="37" code="50012">No short description for method __construct()</error>
+      <error line="78" code="50010">No DocBlock was found for method set()</error>
+      <error line="107" code="50010">No DocBlock was found for method get()</error>
+      <error line="121" code="50010">No DocBlock was found for method remove()</error>
+      <error line="143" code="50010">No DocBlock was found for method clear()</error>
+    </parse_markers>
+  </file>
+  <file path="SagMemoryCache.php" hash="7c5cdf2e4e2d44f6c6271d57a97898f5" package="Core">
+    <include line="16" type="Require Once" package="Core">
+      <name>SagCache.php</name>
+    </include>
+    <include line="17" type="Require Once" package="Core">
+      <name>SagException.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="30" package="Cache">
+      <extends>\SagCache</extends>
+      <name>SagMemoryCache</name>
+      <full_name>\SagMemoryCache</full_name>
+      <docblock line="19">
+        <description>Stores cached items in PHP's memory as serialized JSON, which was
+benchmarked as being faster than serliaze() and clone.</description>
+        <long-description>&lt;p&gt;Cache sizing is not supported with this caching mechanism. This is because
+PHP is not accurate at reporting memory allocation and it does not make
+sense to increase latency to implement a broken feature.&lt;/p&gt;</long-description>
+        <tag line="19" name="package" description="Cache"/>
+        <tag line="19" name="version" description="0.8.0"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Core">
+        <name>$cache</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="33" package="Cache">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="38" package="Cache">
+        <name>set</name>
+        <full_name>set</full_name>
+        <argument line="38">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="38">
+          <name>$item</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="58" package="Cache">
+        <name>get</name>
+        <full_name>get</full_name>
+        <argument line="58">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="Cache">
+        <name>remove</name>
+        <full_name>remove</full_name>
+        <argument line="62">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="68" package="Cache">
+        <name>clear</name>
+        <full_name>clear</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="75" package="Cache">
+        <name>setSize</name>
+        <full_name>setSize</full_name>
+        <argument line="75">
+          <name>$bytes</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="79" package="Cache">
+        <name>getSize</name>
+        <full_name>getSize</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="83" package="Cache">
+        <name>getUsage</name>
+        <full_name>getUsage</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SagMemoryCache.php</error>
+      <error line="31" code="50018">No DocBlock was found for property $cache</error>
+      <error line="33" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="38" code="50010">No DocBlock was found for method set()</error>
+      <error line="58" code="50010">No DocBlock was found for method get()</error>
+      <error line="62" code="50010">No DocBlock was found for method remove()</error>
+      <error line="68" code="50010">No DocBlock was found for method clear()</error>
+      <error line="75" code="50010">No DocBlock was found for method setSize()</error>
+      <error line="79" code="50010">No DocBlock was found for method getSize()</error>
+      <error line="83" code="50010">No DocBlock was found for method getUsage()</error>
+    </parse_markers>
+  </file>
+  <file path="Sag.php" hash="6863306f8b3404a1a29250db0305835f" package="Core">
+    <include line="16" type="Require Once" package="Core">
+      <name>SagException.php</name>
+    </include>
+    <include line="17" type="Require Once" package="Core">
+      <name>SagCouchException.php</name>
+    </include>
+    <include line="18" type="Require Once" package="Core">
+      <name>httpAdapters/SagNativeHTTPAdapter.php</name>
+    </include>
+    <include line="19" type="Require Once" package="Core">
+      <name>httpAdapters/SagCURLHTTPAdapter.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="27" package="Core">
+      <extends/>
+      <name>Sag</name>
+      <full_name>\Sag</full_name>
+      <docblock line="21">
+        <description>The Sag class provides the core functionality for talking to CouchDB.</description>
+        <long-description></long-description>
+        <tag line="21" name="version" description="0.8.0"/>
+        <tag line="21" name="package" description="Core"/>
+      </docblock>
+      <property final="false" static="true" visibility="public" line="32" namespace="global" package="Core">
+        <name>$AUTH_BASIC</name>
+        <default>"AUTH_BASIC"</default>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+          <tag line="28" name="var" description="Used by login() to use HTTP Basic Authentication." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="28" name="static" description=""/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="public" line="38" namespace="global" package="Core">
+        <name>$AUTH_COOKIE</name>
+        <default>"AUTH_COOKIE"</default>
+        <docblock line="34">
+          <description></description>
+          <long-description></long-description>
+          <tag line="34" name="var" description="Used by login() to use HTTP Cookie Authentication." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="34" name="static" description=""/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="public" line="45" namespace="global" package="Core">
+        <name>$HTTP_NATIVE_SOCKETS</name>
+        <default>'HTTP_NATIVE_SOCKETS'</default>
+        <docblock line="40">
+          <description></description>
+          <long-description></long-description>
+          <tag line="40" name="var" description="Used to identify SagNativeHTTPAdapter by setHTTPAdapter() and company." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="static" description=""/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="public" line="52" namespace="global" package="Core">
+        <name>$HTTP_CURL</name>
+        <default>'HTTP_CURL'</default>
+        <docblock line="47">
+          <description></description>
+          <long-description></long-description>
+          <tag line="47" name="var" description="Used to identify SagCURLHTTPAdapter by setHTTPAdapter() and company." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="47" name="static" description=""/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="54" namespace="global" package="Core">
+        <name>$db</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="55" namespace="global" package="Core">
+        <name>$host</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="56" namespace="global" package="Core">
+        <name>$port</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="57" namespace="global" package="Core">
+        <name>$pathPrefix</name>
+        <default>''</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="59" namespace="global" package="Core">
+        <name>$user</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="60" namespace="global" package="Core">
+        <name>$pass</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="61" namespace="global" package="Core">
+        <name>$authType</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="62" namespace="global" package="Core">
+        <name>$authSession</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="64" namespace="global" package="Core">
+        <name>$cache</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="66" namespace="global" package="Core">
+        <name>$staleDefault</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="68" namespace="global" package="Core">
+        <name>$globalCookies</name>
+        <default>array()</default>
+      </property>
+      <property final="false" static="false" visibility="private" line="70" namespace="global" package="Core">
+        <name>$httpAdapter</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="71" namespace="global" package="Core">
+        <name>$httpAdapterType</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="80" package="Core">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="73">
+          <description></description>
+          <long-description></long-description>
+          <tag line="73" name="param" description="(OPTIONAL) The host's IP or address of the Couch we're&#10;connecting to. Defaults to '127.0.0.1'." type="string" variable="$host">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="73" name="param" description="(OPTIONAL) The host's port that Couch is listening on.&#10;Defaults to '5984'." type="string" variable="$port">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="80">
+          <name>$host</name>
+          <default>"127.0.0.1"</default>
+          <type/>
+        </argument>
+        <argument line="80">
+          <name>$port</name>
+          <default>"5984"</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="99" package="Core">
+        <name>setHTTPAdapter</name>
+        <full_name>setHTTPAdapter</full_name>
+        <docblock line="89">
+          <description>Set which HTTP library you want to use for communicating with CouchDB.</description>
+          <long-description></long-description>
+          <tag line="89" name="param" description="The type of adapter you want to use. Should be one of&#10;the Sag::$HTTP_* variables." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="89" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+          <tag line="89" name="see" description="\Sag::$HTTP_NATIVE_SOCKETS" refers="\Sag::$HTTP_NATIVE_SOCKETS"/>
+          <tag line="89" name="see" description="\Sag::$HTTP_CURL" refers="\Sag::$HTTP_CURL"/>
+        </docblock>
+        <argument line="99">
+          <name>$type</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="150" package="Core">
+        <name>currentHTTPAdapter</name>
+        <full_name>currentHTTPAdapter</full_name>
+        <docblock line="144">
+          <description>Returns the current HTTP adapter being used.</description>
+          <long-description></long-description>
+          <tag line="144" name="return" description="Will be equal to Sag::$HTTP_NATIVE_SOCKETS or&#10;Sag::$HTTP_CURL." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="174" package="Core">
+        <name>login</name>
+        <full_name>login</full_name>
+        <docblock line="154">
+          <description>Updates the login credentials in Sag that will be used for all further
+communications.</description>
+          <long-description>&lt;p&gt;Pass null to both $user and $pass to turn off
+authentication, as Sag does support blank usernames and passwords - only
+one of them has to be set for packets to be sent with authentication.&lt;/p&gt;
+
+&lt;p&gt;Cookie authentication will cause a call to the server to establish the
+session, and will throw an exception if the credentials weren't valid.&lt;/p&gt;</long-description>
+          <tag line="154" name="param" description="The username you want to login with. (null for none)" type="string" variable="$user">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="154" name="param" description="The password you want to login with. (null for none)" type="string" variable="$pass">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="154" name="param" description="The type of login system being used. Defaults to&#10;Sag::$AUTH_BASIC." type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="154" name="return" description="Returns true if the input was valid. If using $AUTH_COOKIE,&#10;then the autoSession value will be returned. Throws on failure." type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="154" name="see" description="\$AUTH_BASIC" refers="\$AUTH_BASIC"/>
+          <tag line="154" name="see" description="\$AUTH_COOKIE" refers="\$AUTH_COOKIE"/>
+        </docblock>
+        <argument line="174">
+          <name>$user</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="174">
+          <name>$pass</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="174">
+          <name>$type</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="208" package="Core">
+        <name>getSession</name>
+        <full_name>getSession</full_name>
+        <docblock line="203">
+          <description>Get current session information on the server with /_session.</description>
+          <long-description></long-description>
+          <tag line="203" name="return" description="" type="\stdClass">
+            <type by_reference="false">\stdClass</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="219" package="Core">
+        <name>decode</name>
+        <full_name>decode</full_name>
+        <docblock line="212">
+          <description>Sets whether Sag will decode CouchDB's JSON responses with json_decode()
+or to simply return the JSON as a string.</description>
+          <long-description>&lt;p&gt;Defaults to true.&lt;/p&gt;</long-description>
+          <tag line="212" name="param" description="True to decode, false to not decode." type="bool" variable="$decode">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="212" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+        </docblock>
+        <argument line="219">
+          <name>$decode</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="239" package="Core">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="229">
+          <description>Performs an HTTP GET operation for the supplied URL.</description>
+          <long-description>&lt;p&gt;The database name you
+provided is automatically prepended to the URL, so you only need to give
+the portion of the URL that comes after the database name.&lt;/p&gt;
+
+&lt;p&gt;You are responsible for URL encoding your own parameters.&lt;/p&gt;</long-description>
+          <tag line="229" name="param" description="The URL, with or without the leading slash." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="229" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="239">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="300" package="Core">
+        <name>head</name>
+        <full_name>head</full_name>
+        <docblock line="290">
+          <description>Performs an HTTP HEAD operation for the supplied document.</description>
+          <long-description>&lt;p&gt;This operation
+does not try to read from a provided cache, and does not cache its
+results.&lt;/p&gt;</long-description>
+          <tag line="290" name="see" description="\http://wiki.apache.org/couchdb/HTTP_Document_API#HEAD" refers="\http://wiki.apache.org/couchdb/HTTP_Document_API#HEAD"/>
+          <tag line="290" name="param" description="The URL, with or without the leading slash." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="290" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="300">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="326" package="Core">
+        <name>delete</name>
+        <full_name>delete</full_name>
+        <docblock line="318">
+          <description>DELETE's the specified document.</description>
+          <long-description></long-description>
+          <tag line="318" name="param" description="The document's _id." type="string" variable="$id">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="318" name="param" description="The document's _rev." type="string" variable="$rev">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="318" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="326">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="326">
+          <name>$rev</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="354" package="Core">
+        <name>put</name>
+        <full_name>put</full_name>
+        <docblock line="345">
+          <description>PUT's the data to the document.</description>
+          <long-description></long-description>
+          <tag line="345" name="param" description="The document's _id." type="string" variable="$id">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="345" name="param" description="The document, which should have _id and _rev&#10;properties. Can be an object, array, or string." type="mixed" variable="$data">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="345" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="354">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="354">
+          <name>$data</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="412" package="Core">
+        <name>post</name>
+        <full_name>post</full_name>
+        <docblock line="401">
+          <description>POST's the provided document.</description>
+          <long-description>&lt;p&gt;When using a SagCache, the created document
+and response are not cached.&lt;/p&gt;</long-description>
+          <tag line="401" name="param" description="The document that you want created. Can be an object,&#10;array, or string." type="mixed" variable="$data">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="401" name="param" description="Can be the path to a view or /all_docs. The database&#10;will be prepended to the value." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="401" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="412">
+          <name>$data</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="412">
+          <name>$path</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="448" package="Core">
+        <name>bulk</name>
+        <full_name>bulk</full_name>
+        <docblock line="435">
+          <description>Bulk pushes documents to the database.</description>
+          <long-description>&lt;p&gt;This function does not leverage the caching mechanism you specify with
+setCache().&lt;/p&gt;</long-description>
+          <tag line="435" name="param" description="An array of the documents you want to be pushed; they&#10;can be JSON strings, objects, or arrays." type="array" variable="$docs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="435" name="param" description="Whether to treat the transactions as &quot;all or&#10;nothing&quot; or not. Defaults to false." type="bool" variable="$allOrNothing">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="435" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="448">
+          <name>$docs</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="448">
+          <name>$allOrNothing</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="486" package="Core">
+        <name>copy</name>
+        <full_name>copy</full_name>
+        <docblock line="473">
+          <description>COPY's the document.</description>
+          <long-description>&lt;p&gt;If you are using a SagCache and are copying to an existing destination,
+then the result will be cached (ie., what's copied to the /$destID URL).&lt;/p&gt;</long-description>
+          <tag line="473" name="param" description="The _id of the document you're copying." type="string" variable="$srcID">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="473" name="param" description="The _id of the document you're copying to." type="string" variable="$dstID">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="473" name="param" description="The _rev of the document you're copying to. Defaults to&#10;null." type="string" variable="$dstRev">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="473" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="486">
+          <name>$srcID</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="486">
+          <name>$dstID</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="486">
+          <name>$dstRev</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="529" package="Core">
+        <name>setDatabase</name>
+        <full_name>setDatabase</full_name>
+        <docblock line="512">
+          <description>Sets which database Sag is going to send all of its database related
+communications to (ex., dealing with documents).</description>
+          <long-description>&lt;p&gt;When specifying that the database should be created if it doesn't already
+exists, this will cause an HTTP GET to be sent to /dbName and
+createDatabase($db) if a 404 response is returned. So, only turn it on if
+it makes sense for your application, because it could cause needless HTTP
+GET calls.&lt;/p&gt;</long-description>
+          <tag line="512" name="param" description="The database's name, as you'd put in the URL. This&#10;string will be URL encoded using PHP's urlencode()." type="string" variable="$db">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="512" name="param" description="Whether to try and create the specified&#10;database if it doesn't exist yet (checks every time this is called)." type="bool" variable="$createIfNotFound">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="512" name="return" description="Returns $this. Throws on failure." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+        </docblock>
+        <argument line="529">
+          <name>$db</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="529">
+          <name>$createIfNotFound</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="574" package="Core">
+        <name>getAllDocs</name>
+        <full_name>getAllDocs</full_name>
+        <docblock line="556">
+          <description>Gets all the documents in the database with _all_docs.</description>
+          <long-description>&lt;p&gt;Its results will
+not be cached by SagCache.&lt;/p&gt;</long-description>
+          <tag line="556" name="param" description="Whether to include the documents or not. Defaults to&#10;false." type="bool" variable="$incDocs">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="556" name="param" description="Limits the number of documents to return. Must be &gt;= 0,&#10;or null for no limit. Defaults to null (no limit)." type="int" variable="$limit">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="556" name="param" description="The startkey variable (valid JSON). Defaults to&#10;null." type="string" variable="$startKey">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="556" name="param" description="The endkey variable (valid JSON). Defaults to null." type="string" variable="$endKey">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="556" name="param" description="An array of keys (strings) of the specific documents&#10;you're trying to get." type="array" variable="$keys">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="556" name="param" description="Whether to sort the results in descending order or&#10;not." type="bool" variable="$descending">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="556" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="574">
+          <name>$incDocs</name>
+          <default>false</default>
+          <type/>
+        </argument>
+        <argument line="574">
+          <name>$limit</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="574">
+          <name>$startKey</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="574">
+          <name>$endKey</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="574">
+          <name>$keys</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="574">
+          <name>$descending</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="643" package="Core">
+        <name>getAllDatabases</name>
+        <full_name>getAllDatabases</full_name>
+        <docblock line="638">
+          <description>Gets all the databases on the server with _all_dbs.</description>
+          <long-description></long-description>
+          <tag line="638" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="653" package="Core">
+        <name>generateIDs</name>
+        <full_name>generateIDs</full_name>
+        <docblock line="647">
+          <description>Uses CouchDB to generate IDs.</description>
+          <long-description></long-description>
+          <tag line="647" name="param" description="The number of IDs to generate (&gt;= 0). Defaults to 10." type="int" variable="$num">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="647" name="returns" description="mixed"/>
+        </docblock>
+        <argument line="653">
+          <name>$num</name>
+          <default>10</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="669" package="Core">
+        <name>createDatabase</name>
+        <full_name>createDatabase</full_name>
+        <docblock line="662">
+          <description>Creates a database with the specified name.</description>
+          <long-description></long-description>
+          <tag line="662" name="param" description="The name of the database you want to create." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="662" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="669">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="684" package="Core">
+        <name>deleteDatabase</name>
+        <full_name>deleteDatabase</full_name>
+        <docblock line="677">
+          <description>Deletes the specified database.</description>
+          <long-description></long-description>
+          <tag line="677" name="param" description="The database's name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="677" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="684">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="710" package="Core">
+        <name>replicate</name>
+        <full_name>replicate</full_name>
+        <docblock line="692">
+          <description>Starts a replication job between two databases, independently of which
+database you set with Sag.</description>
+          <long-description></long-description>
+          <tag line="692" name="param" description="The name of the database that you are replicating from." type="string" variable="$src">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="692" name="param" description="The name of the database that you are replicating&#10;to." type="string" variable="$target">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="692" name="param" description="Whether to make this a continuous replication job&#10;or not. Defaults to false." type="bool" variable="$continuous">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="692" name="param" description="Specifies create_target, which will create the&#10;target database if it does not already exist. (optional)" type="bool" variable="$createTarget">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="692" name="param" description="The name of the filter function to use. (optional)" type="string" variable="$filter">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="692" name="param" description="An object or associative array of&#10;parameters to be passed to the filter function via query_params. Only used&#10;if $filter is set." type="mixed" variable="$filterQueryParams">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="692" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="710">
+          <name>$src</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="710">
+          <name>$target</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="710">
+          <name>$continuous</name>
+          <default>false</default>
+          <type/>
+        </argument>
+        <argument line="710">
+          <name>$createTarget</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="710">
+          <name>$filter</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="710">
+          <name>$filterQueryParams</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="773" package="Core">
+        <name>compact</name>
+        <full_name>compact</full_name>
+        <docblock line="764">
+          <description>Starts a compaction job on the database you selected, or optionally one of
+its views.</description>
+          <long-description></long-description>
+          <tag line="764" name="param" description="The database's view that you want to compact,&#10;instead of the whole database." type="string" variable="$viewName">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="764" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="773">
+          <name>$viewName</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="792" package="Core">
+        <name>setAttachment</name>
+        <full_name>setAttachment</full_name>
+        <docblock line="777">
+          <description>Create or update attachments on documents by passing in a serialized
+version of your attachment (a string).</description>
+          <long-description></long-description>
+          <tag line="777" name="param" description="The attachment's name." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="777" name="param" description="The attachment's data, in string representation. Ie.,&#10;you need to serialize your attachment." type="string" variable="$data">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="777" name="param" description="The proper Content-Type for your attachment." type="string" variable="$contentType">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="777" name="param" description="The _id of the document that the attachment&#10;belongs to." type="string" variable="$docID">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="777" name="param" description="optional The _rev of the document that the attachment&#10;belongs to. Leave blank if you are creating a new document." type="string" variable="$rev">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="777" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="792">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="792">
+          <name>$data</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="792">
+          <name>$contentType</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="792">
+          <name>$docID</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="792">
+          <name>$rev</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="822" package="Core">
+        <name>setOpenTimeout</name>
+        <full_name>setOpenTimeout</full_name>
+        <docblock line="816">
+          <description>Sets how long Sag should wait to establish a connection to CouchDB.</description>
+          <long-description></long-description>
+          <tag line="816" name="param" description="" type="int" variable="$seconds">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="816" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+        </docblock>
+        <argument line="822">
+          <name>$seconds</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="840" package="Core">
+        <name>setRWTimeout</name>
+        <full_name>setRWTimeout</full_name>
+        <docblock line="829">
+          <description>How long Sag should wait to execute a request with CouchDB.</description>
+          <long-description>&lt;p&gt;If not set,
+then either default_socket_timeout from your php.ini or cURL's defaults
+are used depending on which adapter you're using.&lt;/p&gt;
+
+&lt;p&gt;Use setOpenTimeout() to set the timeout on opening the socket.&lt;/p&gt;</long-description>
+          <tag line="829" name="param" description="The seconds part of the timeout." type="int" variable="$seconds">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="829" name="param" description="optional The microseconds part of the timeout." type="int" variable="$microseconds">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="829" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+        </docblock>
+        <argument line="840">
+          <name>$seconds</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="840">
+          <name>$microseconds</name>
+          <default>0</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="853" package="Core">
+        <name>setCache</name>
+        <full_name>setCache</full_name>
+        <argument line="853">
+          <name>$cacheImpl</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="868" package="Core">
+        <name>getCache</name>
+        <full_name>getCache</full_name>
+        <docblock line="863">
+          <description>Returns the cache object that's currently being used.</description>
+          <long-description></long-description>
+          <tag line="863" name="return" description="" type="\SagCache">
+            <type by_reference="false">\SagCache</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="878" package="Core">
+        <name>currentDatabase</name>
+        <full_name>currentDatabase</full_name>
+        <docblock line="872">
+          <description>Returns the name of the database Sag is currently working with, or null if
+setDatabase() hasn't been called yet.</description>
+          <long-description></long-description>
+          <tag line="872" name="return" description="" type="String">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="887" package="Core">
+        <name>getStats</name>
+        <full_name>getStats</full_name>
+        <docblock line="882">
+          <description>Retrieves the run time metrics from CouchDB that lives at /_stats.</description>
+          <long-description></long-description>
+          <tag line="882" name="return" description="" type="\stdClass">
+            <type by_reference="false">\stdClass</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="903" package="Core">
+        <name>setStaleDefault</name>
+        <full_name>setStaleDefault</full_name>
+        <docblock line="891">
+          <description>Set whether or not to include ?stale=ok by default when running GET and
+HEAD requests.</description>
+          <long-description>&lt;p&gt;When set to true, a very slight overhead in the get() and head() functions
+will occur, as they will parse out the parameters from the URL you
+provide and ensure that no other value is being passed to the stale
+variable.&lt;/p&gt;</long-description>
+          <tag line="891" name="param" description="True will make stale=ok be sent by default." type="bool" variable="$stale">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="891" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+        </docblock>
+        <argument line="903">
+          <name>$stale</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="927" package="Core">
+        <name>setCookie</name>
+        <full_name>setCookie</full_name>
+        <docblock line="913">
+          <description>Sets a global cookie that will overwrite any other internal cookie values
+that Sag tries to set.</description>
+          <long-description>&lt;p&gt;For example, if you set AuthSession and call
+login(), then the AuthSession value you specify will overwrite the value
+retrieved from the server, so don't set AuthSession while using login().&lt;/p&gt;
+
+&lt;p&gt;Setting the value to null will make Sag no longer send the cookie.&lt;/p&gt;</long-description>
+          <tag line="913" name="param" description="The cookie's key." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="913" name="param" description="The cookie's value." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="913" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+          <tag line="913" name="see" description="\getCookie()" refers="\getCookie()"/>
+        </docblock>
+        <argument line="927">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="927">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="953" package="Core">
+        <name>getCookie</name>
+        <full_name>getCookie</full_name>
+        <docblock line="946">
+          <description>Returns the global cookie as set in setCookie().</description>
+          <long-description></long-description>
+          <tag line="946" name="return" description="The cookie's value or null if not set." type="String">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="946" name="see" description="\setCookie()" refers="\setCookie()"/>
+        </docblock>
+        <argument line="953">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="969" package="Core">
+        <name>useSSL</name>
+        <full_name>useSSL</full_name>
+        <docblock line="957">
+          <description>Set whether to use SSL or not.</description>
+          <long-description>&lt;p&gt;By default the host's certificate will not be verified: you must provide a
+certifivate to setSSLCert() to enable verification.&lt;/p&gt;</long-description>
+          <tag line="957" name="param" description="Set to true to use SSL, false to not." type="bool" variable="$use">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="957" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+          <tag line="957" name="see" description="\setSSLCert()" refers="\setSSLCert()"/>
+        </docblock>
+        <argument line="969">
+          <name>$use</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="988" package="Core">
+        <name>usingSSL</name>
+        <full_name>usingSSL</full_name>
+        <docblock line="981">
+          <description>Returns whether Sag is using SSL or not.</description>
+          <long-description></long-description>
+          <tag line="981" name="return" description="true means Sag is using SSL, false means Sag is not." type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="981" name="see" description="\useSSL()" refers="\useSSL()"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1004" package="Core">
+        <name>setSSLCert</name>
+        <full_name>setSSLCert</full_name>
+        <docblock line="992">
+          <description>Provide a path to a file that contains one or more certificates to verify
+the CouchDB host with when using SSL.</description>
+          <long-description>&lt;p&gt;Only applies if you set
+useSSL(true).&lt;/p&gt;</long-description>
+          <tag line="992" name="param" description="File path to the certificate file. Pass null to unset&#10;the path." type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="992" name="return" description="Returns $this." type="\Sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+          <tag line="992" name="see" description="\useSSL()" refers="\useSSL()"/>
+        </docblock>
+        <argument line="1004">
+          <name>$path</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1024" package="Core">
+        <name>setPathPrefix</name>
+        <full_name>setPathPrefix</full_name>
+        <argument line="1024">
+          <name>$path</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="1034" package="Core">
+        <name>getPathPrefix</name>
+        <full_name>getPathPrefix</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1039" package="Core">
+        <name>procPacket</name>
+        <full_name>procPacket</full_name>
+        <argument line="1039">
+          <name>$method</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="1039">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="1039">
+          <name>$data</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="1039">
+          <name>$headers</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="1140" package="Core">
+        <name>setURLParameter</name>
+        <full_name>setURLParameter</full_name>
+        <docblock line="1127">
+          <description>Takes a URL and k/v combo for a URL parameter, break the query string out
+of the URL, and sets the parameter to the k/v pair you pass in.</description>
+          <long-description>&lt;p&gt;This will
+overwrite a paramter's value if it already exists in the URL, or simply
+create it if it doesn't already.&lt;/p&gt;</long-description>
+          <tag line="1127" name="param" description="The URL to run against." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1127" name="param" description="The name of the parameter to set in the URL." type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1127" name="param" description="The value of the parameter to set in the URL." type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="1127" name="return" description="The modified URL." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="1140">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="1140">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="1140">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Sag.php</error>
+      <error line="54" code="50018">No DocBlock was found for property $db</error>
+      <error line="55" code="50018">No DocBlock was found for property $host</error>
+      <error line="56" code="50018">No DocBlock was found for property $port</error>
+      <error line="57" code="50018">No DocBlock was found for property $pathPrefix</error>
+      <error line="59" code="50018">No DocBlock was found for property $user</error>
+      <error line="60" code="50018">No DocBlock was found for property $pass</error>
+      <error line="61" code="50018">No DocBlock was found for property $authType</error>
+      <error line="62" code="50018">No DocBlock was found for property $authSession</error>
+      <error line="64" code="50018">No DocBlock was found for property $cache</error>
+      <error line="66" code="50018">No DocBlock was found for property $staleDefault</error>
+      <error line="68" code="50018">No DocBlock was found for property $globalCookies</error>
+      <error line="70" code="50018">No DocBlock was found for property $httpAdapter</error>
+      <error line="71" code="50018">No DocBlock was found for property $httpAdapterType</error>
+      <error line="73" code="50012">No short description for method __construct()</error>
+      <error line="853" code="50010">No DocBlock was found for method setCache()</error>
+      <error line="946" code="50015">Argument $key is missing from the Docblock of getCookie()</error>
+      <error line="1024" code="50010">No DocBlock was found for method setPathPrefix()</error>
+      <error line="1034" code="50010">No DocBlock was found for method getPathPrefix()</error>
+      <error line="1039" code="50010">No DocBlock was found for method procPacket()</error>
+    </parse_markers>
+  </file>
+  <file path="SagUserUtils.php" hash="fbdedf9eec1b485bf408999e6820fc1f" package="Core">
+    <include line="16" type="Require Once" package="Core">
+      <name>Sag.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="25" package="Utils">
+      <extends/>
+      <name>SagUserUtils</name>
+      <full_name>\SagUserUtils</full_name>
+      <docblock line="18">
+        <description>Provides utilities to work with and manage CouchDB users, which wraps the
+Sag class.</description>
+        <long-description></long-description>
+        <tag line="18" name="version" description="0.8.0"/>
+        <tag line="18" name="package" description="Utils"/>
+      </docblock>
+      <property final="false" static="true" visibility="private" line="26" namespace="global" package="Core">
+        <name>$USER_ID_PREFIX</name>
+        <default>'org.couchdb.user:'</default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="35" package="Utils">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="28">
+          <description></description>
+          <long-description></long-description>
+          <tag line="28" name="param" description="An instantiated copy of Sag that you want this class to&#10;use. If you don't specify a database (empty($sag-&gt;currentDatabase())) then&#10;it will be set to '_users'." type="\Sag" variable="$sag">
+            <type by_reference="false">\Sag</type>
+          </tag>
+          <tag line="28" name="return" description="" type="\SagUserUtils">
+            <type by_reference="false">\SagUserUtils</type>
+          </tag>
+        </docblock>
+        <argument line="35">
+          <name>$sag</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="69" package="Utils">
+        <name>createUser</name>
+        <full_name>createUser</full_name>
+        <docblock line="50">
+          <description>Creates a user and returns the server's response.</description>
+          <long-description>&lt;p&gt;If no name is provided,
+then the id is duplicated into that position.&lt;/p&gt;</long-description>
+          <tag line="50" name="param" description="The user's ID without the 'org.couchdb.user:' prefix." type="string" variable="$id">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="param" description="The password, which will be salted and encrypted&#10;for you." type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="param" description="(OPTIONAL) The user's name. If not provided, then it&#10;will be the same as the provided $id." type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="50" name="param" description="(OPTIONAL) An array of roles (strings) for the user." type="array" variable="$roles">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="50" name="return" description="The server's response, as you would expect from Sag's put()&#10;function." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="50" name="see" description="\Sag::put()" refers="\Sag::put()"/>
+        </docblock>
+        <argument line="69">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$password</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$name</name>
+          <default>null</default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$roles</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="128" package="Utils">
+        <name>getUser</name>
+        <full_name>getUser</full_name>
+        <docblock line="115">
+          <description>Returns the user document from the database (just the response body, not
+HTTP info).</description>
+          <long-description></long-description>
+          <tag line="115" name="param" description="The user's _id." type="string" variable="$id">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="115" name="param" description="Specify whether the $id you are providing has&#10;'org.couchdb.user:' prepended to it. If it doesn't (set to false, which is&#10;the default) then the string will be prepended for you." type="bool" variable="$hasPrepend">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="115" name="return" description="The user document: just the body property from Sag-&gt;get()'s&#10;return value." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="128">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="128">
+          <name>$hasPrepend</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="149" package="Utils">
+        <name>changePassword</name>
+        <full_name>changePassword</full_name>
+        <docblock line="132">
+          <description>Takes a user document and new password, generates a salt, and updates the
+password for that user document.</description>
+          <long-description>&lt;p&gt;You can optionally have the function send
+the updated document to the server as well.&lt;/p&gt;</long-description>
+          <tag line="132" name="param" description="The user document. Expected to look like what&#10;SagUserUtils-&gt;getUser() returns." type="object" variable="$doc">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="132" name="param" description="The new password for the user." type="string" variable="$newPassword">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="132" name="param" description="Whether to PUT the document to the server after&#10;updating it. Defaults to false." type="bool" variable="$upload">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="132" name="return" description="If you set $upload to false, then just the updated document&#10;is returned. If you set $upload to true, then the result of Sag-&gt;put() is&#10;returned, so you get the updated document and HTTP information." type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="149">
+          <name>$doc</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="149">
+          <name>$newPassword</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="149">
+          <name>$upload</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="174" package="Utils">
+        <name>makeSalt</name>
+        <full_name>makeSalt</full_name>
+        <docblock line="167">
+          <description>Generates a salt that will be used when setting users' passwords.</description>
+          <long-description>&lt;p&gt;By
+default it requests a uuid from the CouchDB server you specified.&lt;/p&gt;</long-description>
+          <tag line="167" name="return" description="A randomly generated string of characters that will be used&#10;to salt users' passwords." type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SagUserUtils.php</error>
+      <error line="26" code="50018">No DocBlock was found for property $USER_ID_PREFIX</error>
+      <error line="28" code="50012">No short description for method __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="SagCache.php" hash="e1295a0535bb8736d1f344f7d4c4be57" package="Core">
+    <include line="16" type="Require Once" package="Core">
+      <name>SagException.php</name>
+    </include>
+    <class final="false" abstract="true" namespace="global" line="30" package="Cache">
+      <extends/>
+      <name>SagCache</name>
+      <full_name>\SagCache</full_name>
+      <docblock line="18">
+        <description>All the caching systems that Sag can leverage must extend this.</description>
+        <long-description>&lt;p&gt;The cache
+values should always be the object that Sag::procPacket() would return.&lt;/p&gt;
+
+&lt;p&gt;The default cache size is 1MB (one million bytes).&lt;/p&gt;
+
+&lt;p&gt;Cache values are objects (stdClass for PHP storage, or JSON for external
+storage).&lt;/p&gt;</long-description>
+        <tag line="18" name="package" description="Cache"/>
+        <tag line="18" name="version" description="0.8.0"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="31" namespace="global" package="Core">
+        <name>$maxSize</name>
+        <default></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="33" namespace="global" package="Core">
+        <name>$currentSize</name>
+        <default></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="35" package="Cache">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="46" package="Cache">
+        <name>get</name>
+        <full_name>get</full_name>
+        <docblock line="40">
+          <description>Returns the cached object or null if nothing is cached.</description>
+          <long-description></long-description>
+          <tag line="40" name="param" description="The URL of the request we're caching." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="40" name="return" description="" type="object">
+            <type by_reference="false">object</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="70" package="Cache">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="48">
+          <description>Caches the item returned at the provided key, replacing any pre-existing
+cached item.</description>
+          <long-description>&lt;p&gt;If the cache's size will be exceeded by caching the new item,
+then it will remove items from the cache until there is sufficient room.&lt;/p&gt;
+
+&lt;p&gt;Returns false if the item cannot be added to the cache for any reason:
+exceeds the cache size, invalid type, or relevant HTTP headers.&lt;/p&gt;
+
+&lt;p&gt;Returns true if we were able to add the item, and there was no previously
+cached item.&lt;/p&gt;
+
+&lt;p&gt;Returns the previously cached item if there was one and we were able to
+add the new item to the cache.&lt;/p&gt;
+
+&lt;p&gt;Sag will refuse to cache the object by throwing a SagException if adding
+the file to the cache would exceed 95% of the disk or partition's free
+space.&lt;/p&gt;</long-description>
+          <tag line="48" name="param" description="The URL of the request we're caching." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="48" name="param" description="The response we're caching." type="object" variable="$item">
+            <type by_reference="false">object</type>
+          </tag>
+          <tag line="48" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="70">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="70">
+          <name>$item</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="79" package="Cache">
+        <name>remove</name>
+        <full_name>remove</full_name>
+        <docblock line="72">
+          <description>Removes the item from the cache and returns it (null if nothing was
+cached).</description>
+          <long-description></long-description>
+          <tag line="72" name="param" description="The URL of the response we're removing from the cache." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="89" package="Cache">
+        <name>clear</name>
+        <full_name>clear</full_name>
+        <docblock line="81">
+          <description>Clears the whole cache without applying any logic.</description>
+          <long-description>&lt;p&gt;Returns true if the entire cache was cleared, otherwise false if only part
+or none of it was cleared.&lt;/p&gt;</long-description>
+          <tag line="81" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="96" package="Cache">
+        <name>setSize</name>
+        <full_name>setSize</full_name>
+        <docblock line="91">
+          <description>Sets the max size of the cache in bytes.</description>
+          <long-description></long-description>
+          <tag line="91" name="param" description="The size of the cache in bytes (&gt;0)." type="int" variable="$bytes">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="96">
+          <name>$bytes</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="110" package="Cache">
+        <name>getSize</name>
+        <full_name>getSize</full_name>
+        <docblock line="104">
+          <description>Returns the max size of the cache, irrespective of what is or isn't in the
+cache.</description>
+          <long-description></long-description>
+          <tag line="104" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="120" package="Cache">
+        <name>getUsage</name>
+        <full_name>getUsage</full_name>
+        <docblock line="114">
+          <description>Returns the total size of the items in the cache in bytes.</description>
+          <long-description>&lt;p&gt;Not reliable if
+you're using SagMemoryCache.&lt;/p&gt;</long-description>
+          <tag line="114" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="130" package="Cache">
+        <name>makeKey</name>
+        <full_name>makeKey</full_name>
+        <docblock line="124">
+          <description>Generates the hash of the provided URL that will be used as the cache key.</description>
+          <long-description></long-description>
+          <tag line="124" name="param" description="The URL to hash." type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="124" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="130">
+          <name>$url</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="134" package="Cache">
+        <name>addToSize</name>
+        <full_name>addToSize</full_name>
+        <argument line="134">
+          <name>$amt</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="151" package="Cache">
+        <name>mayCache</name>
+        <full_name>mayCache</full_name>
+        <docblock line="142">
+          <description>Returns whether or not the item may be cached.</description>
+          <long-description>&lt;p&gt;It has to be a stdClass
+that Sag would return, with a valid E-Tag, and no cache headers that tell
+us to not cache.&lt;/p&gt;</long-description>
+          <tag line="142" name="param" description="item that we're trying to cache - it should be a response as a&#10;stdClass." type="\The" variable="$item">
+            <type by_reference="false">\The</type>
+          </tag>
+          <tag line="142" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="151">
+          <name>$item</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SagCache.php</error>
+      <error line="31" code="50018">No DocBlock was found for property $maxSize</error>
+      <error line="33" code="50018">No DocBlock was found for property $currentSize</error>
+      <error line="35" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="134" code="50010">No DocBlock was found for method addToSize()</error>
+    </parse_markers>
+  </file>
+  <file path="SagException.php" hash="30f4c5b27d1cb3bcfd55bf5c91152636" package="Core">
+    <class final="false" abstract="false" namespace="global" line="23" package="Core">
+      <extends>\Exception</extends>
+      <name>SagException</name>
+      <full_name>\SagException</full_name>
+      <docblock line="16">
+        <description>This exception is thrown when Sag has an internal error, such as an invalid
+type being passed to a function.</description>
+        <long-description></long-description>
+        <tag line="16" name="version" description="0.8.0"/>
+        <tag line="16" name="package" description="Core"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="24" package="Core">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="24">
+          <name>$msg</name>
+          <default>""</default>
+          <type/>
+        </argument>
+        <argument line="24">
+          <name>$code</name>
+          <default>0</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file SagException.php</error>
+      <error line="24" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <package name="Cache" full_name="Cache"/>
+  <package name="Core" full_name="Core"/>
+  <package name="HTTP" full_name="HTTP"/>
+  <package name="Utils" full_name="Utils"/>
+  <namespace name="global" full_name="global"/>
+  <marker count="1">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
