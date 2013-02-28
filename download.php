@@ -16,6 +16,7 @@ href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, version
     <p>
       <strong>Jump To</strong>
       <ul>
+        <li><a href="#v0.8.0">v0.8.0</a>
         <li><a href="#v0.7.1">v0.7.1</a>
         <li><a href="#v0.7.0">v0.7.0</a>
         <li><a href="#v0.6.1">v0.6.1</a>
@@ -34,10 +35,85 @@ href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, version
     or by cloning the git repository directly:
 
     <code>
-    git clone git://github.com/sbisbee/sag.git sag
+    git clone git://github.com/sbisbee/sag.git
     </code>
 
     <hr/>
+
+    <a name="v0.8.0"></a>
+    <h2>v0.8.0</h2>
+    <p>Released February 28th, 2013</p>
+
+    <p>
+      <strong>Files</strong>
+      <ul>
+        <li>
+          Release: <a href="./distrib/sag-0.8.0.tar.gz">sag-0.8.0.tar.gz</a> [<a href="./distrib/sag-0.8.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-0.8.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-0.8.0.tar.gz.md5">MD5 Checksum</a>]
+        </li>
+        <li>
+          Git Tag: <a href="http://github.com/sbisbee/sag/tree/v0.8.0">Github <img src="./images/external.png"></a>
+        </li>
+      </ul>
+
+    <p>
+      <strong>Changelog</strong>
+
+    <p>
+      <u>Breaking Changes</u>
+      <ul>
+        <li>Header keys are automatically lower cased now, whereas they previously kept
+            their capitalization. Unfortunately different API endpoints would sometimes
+            capitalize header names different (ex., Etag vs. ETag). Additionally,
+            BigCouch and Cloudant sometimes have different header capitalization. So,
+            whereas previously you might have done `$response-&gt;headers-&gt;Cookie` you
+            must now do `$response-&gt;headers-&gt;cookie`.</li>
+
+        <li>We no longer check the PHP install's configuration for a our supported
+            error_reporting level. This is because too many different types of installs
+            were causing false positives and false negatives, needlessly breaking
+            installs. (closes #39)</li>
+
+        <li>Added official support for CouchDB 1.2.x.</li>
+
+        <li>Dropped official support for CouchDB 1.1.x.</li>
+      </ul>
+
+    <p>
+      <u>New Features</u>
+      <ul>
+        <li>Support for setPathPrefix() from Sag-JS v0.3.0. Allows you to prepend all
+            URLs with a string, which is especially useful when going through a proxy.</li>
+      </ul>
+
+    <p>
+      <u>Fixed Bugs</u>
+      <ul>
+        <li>SagNativeHTTPAdapter now supports and follows Location headers. (closes
+            #37)</li>
+
+        <li>SagNativeHTTPAdapter's fgets() call no longer hangs on large responses that
+            are not chunked encoded. This was fixed by providing a line length. Thanks
+            to skyshard (github/skyshard) for helping with the debug. (closes #41)</li>
+
+        <li>Sag no longer uses ternary short hand that was introduced in PHP 5.3, so
+            now PHP 5.2 will run without errors. Thanks to Jim Tittsler (github/jimt)
+            for reporting and submitting the patch. (closes #43)</li>
+
+        <li>Disabled cache sizing for SagMemoryCache due to PHP's memory monitoring
+            being unreliable. The memory cache is no longer capped by Sag. (closes #22)</li>
+
+        <li>Fixing an issue where the SagHTTPAdapter class's file wasn't being required
+            properly, causing class not found exceptions.</li>
+
+        <li>No longer redirecting when the server returns a Location header with a 2xx
+            response. We now only do that redirect on a 3xx header. (Thanks to Greg
+            Nacu for reporting.)</li>
+
+        <li>We now prevent cURL from sending a "Expect: 100-continue" header, as our
+            parsing code doesn't support HTTP/1.1's Continue. See
+            https://github.com/sbisbee/sag/pull/51 for a discussion. (Thanks to Greg
+            Nacu for reporting and working on this issue.)</li>
+      </ul>
 
     <a name="v0.7.1"></a>
     <h2>0.7.1</h2>
