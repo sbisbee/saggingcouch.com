@@ -20,8 +20,7 @@
 
   <li>
     <span>Automated testing</span>
-    Every release is automatically tested against CouchDB 1.0.x and 1.1.x,
-    BigCouch 0.3, and Cloudant.
+    Every release is automatically tested against CouchDB 1.2.x, BigCouch 0.4, and Cloudant.
   </li>
 
   <li>
@@ -31,7 +30,7 @@
 
   <li>
     <span>The same API in PHP and JS</span>
-    Born in March 2010 as a PHP library, Sag-JS provides the same API.
+    Born in March 2010 as a PHP library, Sag-JS provides the same API in browsers and Node.JS.
   </li>
 </ul>
 
