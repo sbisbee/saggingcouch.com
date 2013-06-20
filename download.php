@@ -12,21 +12,20 @@ href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, version
 
 <h2>JavaScript (Node.JS &amp; Browser)</h2>
 
-<p>
-Release: <a href="./distrib/sag-js-0.4.0.tar.gz">sag-js-0.4.0.tar.gz</a> [<a href="./distrib/sag-js-0.4.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-js-0.4.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-js-0.4.0.tar.gz.md5">MD5 Checksum</a>]
+<ul>
+  <li>Release: <a href="./distrib/sag-js-0.4.0.tar.gz">sag-js-0.4.0.tar.gz</a> [<a href="./distrib/sag-js-0.4.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-js-0.4.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-js-0.4.0.tar.gz.md5">MD5 Checksum</a>]
 
-<p>
-NPM: <code>npm install sag</code> or <a href="https://npmjs.org/package/sag">npmjs.org/package/sag</a>
+  <li>NPM: <code>npm install sag</code> or <a href="https://npmjs.org/package/sag">npmjs.org/package/sag</a>
 
-<p>
-Git: <a href="http://github.com/sbisbee/sag-js">Github <img src="./images/external.png"></a>
+  <li>Git: <a href="http://github.com/sbisbee/sag-js">Github <img src="./images/external.png"></a>
+</ul>
 
 <h2>PHP</h2>
 
-<p>
-Release: <a href="./distrib/sag-0.8.0.tar.gz">sag-0.8.0.tar.gz</a> [<a href="./distrib/sag-0.8.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-0.8.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-0.8.0.tar.gz.md5">MD5 Checksum</a>]
+<ul>
+  <li>Release: <a href="./distrib/sag-0.8.0.tar.gz">sag-0.8.0.tar.gz</a> [<a href="./distrib/sag-0.8.0.tar.gz.sig">GPG Sig</a>] [<a href="./distrib/sag-0.8.0.tar.gz.sha">SHA Checksum</a>] [<a href="./distrib/sag-0.8.0.tar.gz.md5">MD5 Checksum</a>]
 
-<p>
-Git: <a href="http://github.com/sbisbee/sag">Github <img src="./images/external.png"></a>
+  <li>Git: <a href="http://github.com/sbisbee/sag">Github <img src="./images/external.png"></a>
+</ul>
 
 <?php require_once('footer.php'); ?>
