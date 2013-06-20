@@ -248,6 +248,11 @@ href="#initiating">Initiating</a>.
 
 <script src="https://gist.github.com/1515442.js?file=replicate.js"></script>
 
+<h3>getActiveTasks(callback)</h3>
+
+<p>
+  Performs a request to /_active_tasks and returns the results to the callback.
+
 <h3>getAllDocs(opts)</h3>
 
 <p>
