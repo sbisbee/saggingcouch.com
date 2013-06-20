@@ -8,7 +8,7 @@
 </i></p>
 
 <p>
-  For Sag-JS v0.3.0 (last updated March 24th, 2012)
+  For Sag-JS v0.4.0 (last updated June 20th, 2013)
 
 <div id="toc">
 <ul><li><a href="#Initiating">Initiating</a></li>
@@ -29,6 +29,7 @@
 <li><a href="#deleteDatabase(name%2C%20callback)">deleteDatabase(name, callback)</a></li>
 <li><a href="#generateIDs(opts)">generateIDs(opts)</a></li>
 <li><a href="#get(opts)">get(opts)</a></li>
+<li><a href="#getActiveTasks(callback)">getActiveTasks(callback)</a></li>
 <li><a href="#getAllDatabases(callback)">getAllDatabases(callback)</a></li>
 <li><a href="#getAllDocs(opts)">getAllDocs(opts)</a></li>
 <li><a href="#getCookie(key)">getCookie(key)</a></li>
@@ -284,6 +285,11 @@ href="#initiating">Initiating</a>.
   <code>filterQueryParams</code> parameter.
 
 <script src="https://gist.github.com/1515442.js?file=replicate.js"></script>
+
+<h3 id="getActiveTasks(callback)">getActiveTasks(callback)</h3>
+
+<p>
+  Performs a request to /_active_tasks and returns the results to the callback.
 
 <h3 id="getAllDocs(opts)">getAllDocs(opts)</h3>
 
