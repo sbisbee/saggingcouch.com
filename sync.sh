@@ -10,7 +10,7 @@ REMOTE_HOST='sbisbee.com'
 REMOTE_ROOT='public_html/saggingcouch.com'
 
 # Make sure we pull down any distrib files that we forgot to commit.
-rsync -ave ssh $REMOTE_HOST:$REMOTE_ROOT/distrib/ distrib/
+#rsync -ave ssh $REMOTE_HOST:$REMOTE_ROOT/distrib/ distrib/
 
 # Push
 rsync -ave ssh --exclude *.swp --exclude buildTOC.js --exclude sync.sh --exclude .git --exclude *.tpl.php --delete . $REMOTE_HOST:$REMOTE_ROOT
