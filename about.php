@@ -5,17 +5,16 @@
 <p>
 I (<a href="http://www.sbisbee.com">Sam Bisbee <img src="./images/external.png"></a>
 ) started developing Sag because I was tired of the options for PHP CouchDB
-interfaces. I was using the <a href="http://wiki.apache.org/couchdb/Getting_started_with_PHP">CouchDB PHP
-example <img src="./images/external.png"></a> code for about a year with some
+interfaces. I was using the CouchDB PHP example code for about a year with some
 slight modifications, including on client projects, and it just wasn't cutting
 it anymore.
 
 <p>
-Most of the projects I looked at used programming models that I didn't like:
-they didn't feel natural, were bloated, had some crazy stuff going on under the
-hood, etc. I enjoy simplicity in my work, and wanted a library that closely
-resembled the actual CouchDB REST interface - <strong><i>I wanted CouchDB's
-relaxation in my PHP</i></strong>.
+Most of the projects I looked at used programming models that I didn't like.
+They didn't feel natural, were bloated, had some crazy stuff going on under the
+hood, etc. I enjoy simplicity in my work and wanted a library that closely
+resembled the actual CouchDB REST interface - I wanted CouchDB's relaxation in
+my PHP.
 
 <p>
 Building the library this way has the added benefit that the project can easily
