@@ -50,14 +50,6 @@
                 </ul>
               </li>
             </ul>
-          <li>
-            <strong>Folks Using Sag</strong>
-
-            <div id="vendors">
-              <a href="https://github.com/tropo/CloudKnock" target="_blank"><img src="./images/vendors/tropo.png"></a>
-              <a href="http://www.bocoup.com" target="_blank"><img src="./images/vendors/bocoup.png"></a>
-              <a href="http://www.accessibleplaces.in" target="_blank"><img src="./images/vendors/accessibleplaces.png"></a>
-            </div>
 
           <li>
             <a href="http://tiptheweb.org/tip/?link=http%3A%2F%2Fwww.saggingcouch.com" class="ttw-button ttw-button-large">Tip Sag</a><br/>
@@ -67,7 +59,7 @@
             <a href="https://github.com/sbisbee/saggingcouch.com">This site on GitHub <img src="./images/external.png"/></a>
 
           <li>
-            <i>Copyright 2010 - 2012 <a href="http://www.sbisbee.com">Sam Bisbee</a>.<br/>
+            <i>Copyright 2010 - 2014 <a href="http://www.sbisbee.com">Sam Bisbee</a>.<br/>
             Logo by <a href="http://www.kurtgannon.com">Kurt Gannon</a>.</i>
         </ul>
       </div>
