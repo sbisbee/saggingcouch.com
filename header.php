@@ -30,6 +30,7 @@
           <li>
             <ul>
               <li><a href=".">Home</a></li>
+              <li><a href="./about.php">About</a></li>
               <li><a href="./download.php" id="download">Download</a></li>
               <li>
                 <u>PHP</u>
@@ -48,7 +49,6 @@
                   <li><a href="http://github.com/sbisbee/sag-js/issues">Issues <img src="./images/external.png"></a></li>
                 </ul>
               </li>
-              <li><a href="./about.php">About</a></li>
             </ul>
           <li>
             <strong>Folks Using Sag</strong>
