@@ -20,7 +20,8 @@
 
   <li>
     <span>Automated testing</span>
-    Every release is automatically tested against CouchDB 1.3.x/1.2.x and Cloudant.
+    Every release is tested against Cloudant and the latest two versions of
+    CouchDB using an <a href="https://github.com/sbisbee/sag/tree/master/tests">automated framework</a>.
   </li>
 
   <li>
