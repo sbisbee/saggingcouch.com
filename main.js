@@ -42,3 +42,13 @@ $(function() {
 
   $(window).hashchange();
 });
+
+(function (window, document) {
+  var ref = document.getElementsByTagName('script')[0],
+      script = document.createElement('script'),
+      secure = window.location.protocol === 'https:';
+  script.async = true;
+  script.src = secure ? 'https://secure-platform.tiptheweb.org/tip/button.js'
+                      : 'http://platform.tiptheweb.org/tip/button.js';
+  ref.parentNode.insertBefore(script, ref);
+}(this, this.document));
